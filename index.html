@@ -1,52 +1,169 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
 
-  <head>
-    <title>Simon Tharby</title>
-    <link href="https://fonts.googleapis.com/css?family=Space+Mono:400,700" rel="stylesheet">
-    <link href="style.css" type="text/css" rel="stylesheet">
-  </head>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap</title>
+  <link rel="stylesheet" href="CSS/bootstrap.min.css">
+  <link rel="stylesheet" href="CSS/custom.css">
+</head>
 
-  <body>
+<body>
+  <!-- navbar -->
+  <nav class="navbar fixed-top navbar-expand-md navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">Simon Tharby</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="nav navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" href="#profile">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" href="#portfolio">Portfolio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-    <header>
-      <div id="header-box">
+  <main role="main" class="container">
+    <div id="profile"></div>
+    <div class="nav-spacer"></div>
 
-        <div id="title-box">
-          <p id="header-title">
-            Simon Charles Tharby
-          </p>
-          <p id="header-subtitle">
-            Wannabe Web Developer
-          </p>
+    <!-- profile -->
+    <h1 class="d-block d-md-none" style="text-align:center;">Simon Tharby</h1>
+    <h3 class="d-block d-md-none" style="text-align:center;">Web Developer</h3><br><br>
+
+    <div class="row">
+      <div class="col-md-3 mb-4">
+        <img class="img-fluid" style="float:left;margin-bottom:20px;" src="img/me.jpg" alt="me">
+        <BR CLEAR="right">
+        <p style="margin-top:10px;font-weight:bold;">Key competencies:</p>
+        <p style="width:90%;margin-top:-10px;">Ruby, JavaScript, Python, C# / Rails / SQL, CSS, HTML, Bootstrap</p>
+        <p style="font-weight:bold;">Skills:</p>
+        <p style="width:90%;margin-top:-10px;">Programming, communication, team-working, editing, design, project-devopment</p>
+        <p style="font-weight:bold;">Languages:</p>
+        <p style="width:90%;margin-top:-10px;">English (native), Portuguese (advanced)</p>
+        <p style="font-weight:bold;">Location:</p>
+        <p style="width:90%;margin-top:-10px;">Devon, UK</p>
+      </div>
+
+      <div class="col-md-9 mb-4">
+        <h1 class="d-none d-md-block" style="text-align:center;">Simon Tharby</h1>
+        <h3 class="d-none d-md-block" style="text-align:center;">Web Developer</h3>
+        <div class="d-none d-md-block" style="height:50px;"></div>
+        <h5 class="d-none d-md-block" style="margin-left:5%;">I like to make things that work well.</h5>
+        <div class="d-none d-md-block" style="height:15px;"></div>
+        <h5 class="d-none d-md-block" style="margin-left:5%;">I have a good understanding of web applications, from the front-end to the back-end. I am always keen to learn new languages, frameworks, and ways of doing things, and I believe that such learning should be a continuous and rewarding process.</h5>
+        <div class="d-none d-md-block" style="height:15px;"></div>
+        <h5 class="d-none d-md-block" style="margin-left:5%;">In addition to my coding knowledge and abilities, I have also developed excellent communication skills and a deep awareness of the essential elements of effective teamwork.</h5>
+        <div class="d-none d-md-block" style="height:15px;"></div>
+        <h5 class="d-none d-md-block" style="margin-left:5%;">I am based in the UK and currently seeking remote work. I am happy to travel regularly for meetings.</h5>
+        <h5 class="d-block d-md-none">I like to make things that work well.</h5><br>
+        <h5 class="d-block d-md-none">I have a good understanding of web applications, from the front-end to the back-end. I am always keen to learn new languages, frameworks, and ways of doing things, and I believe that such learning should be a continuous and rewarding process.</h5><br>
+        <h5 class="d-block d-md-none">In addition to my coding knowledge and abilities, I have also developed excellent communication skills and a deep awareness of the essential elements of effective teamwork.</h5><br>
+        <h5 class="d-block d-md-none">I am based in the UK and currently seeking remote work. I am happy to travel regularly for meetings.</h5><br class="d-block d-md-none">
+        <div style="width:100%;">
+          <div style="width:200px;margin:auto;">
+            <a href="https://www.linkedin.com/in/simontharby/">
+              <img class="butn" src="img/linkedin-btn.png" alt="linkedin">
+            </a>
+          </div>
         </div>
-
-        <img id="menu" src="https://s9.postimg.org/6p0qfzyv3/menu-cream.png">
+        <div style="width:100%;">
+          <div style="width:200px;margin:auto;">
+            <a href="https://github.com/jinjagit">
+              <img style="margin:15px auto;" class="butn" src="img/github-btn.png" alt="github">
+            </a>
+            <div id="portfolio"></div>
+          </div>
+        </div>
       </div>
-    </header>
+    </div>
 
-    <block class="container cont1">
-      <h2 class="container-title">
-        Information:
-      </h2>
-      <div class="wrapper">
-        <box class="box box-1">Box 1</box>
-        <box class="box box-2">Box 2</box>
-        <box class="box box-3">Box 3</box>
+    <hr></hr>
+
+    <!-- portfolio -->
+    <br><h1 style="text-align:center;">Portfolio</h1><br>
+
+    <div class="row">
+      <div class="col-md-8 mb-4">
+        <h2>Ruby Chess</h2>
+        <p>A graphical chess interface, written in pure Ruby and making use of the Ruby2D gem. All rules of chess are enforced, including all legal moves, forced draws, draw through repetition, etc. The GUI is intuitive and offers many optional aids to the user, such as highlighting of legal moves, algebraic notation and the ability to review previous moves. Games can be saved and loaded, and saved incomplete games can be continued.</p>
+        <div class="row">
+          <div class="col-md-6 mb-2">
+            <a href="https://youtu.be/9CCH4cYogmI">
+              <img class="butn" style="display:block;margin:auto;" src="img/video-btn.png" alt="video">
+            </a>
+          </div>
+          <div class="col-md-6 mb-2">
+            <a href="https://github.com/jinjagit/chess">
+              <img class="butn" style="display:block;margin:auto;" src="img/code-btn.png" alt="code">
+            </a>
+          </div>
+        </div>
       </div>
-    </block>
-
-    <block class="container cont2">
-      <h2 class="container-title">
-        Recent Projects:
-      </h2>
-      <div class="wrapper">
-        <box class="box box-1">Box 4</box>
-        <box class="box box-2">Box 5</box>
-        <box class="box box-3">Box 6</box>
+      <div class="col-md-4 mb-4">
+        <a href="https://youtu.be/9CCH4cYogmI">
+          <img class="img-fluid" id="chess" src="img/chess.png" onmouseover="this.src='img/chess-screen.png';"  onmouseout="this.src='img/chess.png';" alt="chess">
+        </a>
       </div>
-    </block>
+    </div>
 
-  </body>
+    <div class="row">
+      <div class="col-md-8 mb-4">
+        <h2>Calculator</h2>
+        <p>A mobile focused, minimal, responsive design, with desktop default layout (scaled relative to screen size and responsive under certain conditions), written in pure JavaScript. The calculator offers parenthesized expressions and exponentiation, as well as the normal basic operations. Various error messages are displayed when appropriate. Scientific notation is used to enable display of very large / small values. The overall design is clean and intuitive.</p>
+        <div class="row">
+          <div class="col-md-6 mb-2">
+            <a href="https://calculator.simontharby.com/">
+              <img class="butn" style="display:block;margin:auto;" src="img/website-btn.png" alt="video">
+            </a>
+          </div>
+          <div class="col-md-6 mb-2">
+            <a href="https://github.com/jinjagit/calculator">
+              <img class="butn" style="display:block;margin:auto;" src="img/code-btn.png" alt="code">
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <a href="https://calculator.simontharby.com/">
+          <img class="img-fluid" src="img/calc.png" onmouseover="this.src='img/calc-screen.png';"  onmouseout="this.src='img/calc.png';" alt="calculator">
+        </a>
+        <div id="contact"></div>
+      </div>
+    </div>
 
+    <hr></hr>
+
+    <!-- Contact -->
+    <br><h1 style="text-align:center;">Contact</h1><br>
+    <div style="width:100%;">
+      <div style="width:200px;margin:auto;">
+        <a href="mailto: simontharby@gmail.com">
+          <img class="butn" src="img/email-btn.png" alt="linkedin">
+        </a>
+      </div>
+    </div>
+    <div style="height:30px;"></div>
+    <h4 style="text-align:center;">Please email me:</a></h4>
+    <h4 style="text-align:center;"><a href="mailto: simontharby@gmail.com">simontharby@gmail.com</a></h4><br>
+
+    <hr></hr>
+    <p class="grey" style="text-align:right;">&copy; Simon Tharby, 2019</p>
+  </main>
+
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/smoothScroll.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+</body>
 </html>

@@ -1,0 +1,45 @@
+:root {
+  --body-bg-color: #ddffc9;
+  --nav-bg-color: #1a3d06;
+  --butn-hov-color: #32770a;
+}
+
+body {
+  background-color: var(--body-bg-color);
+  color: var(--nav-bg-color);
+}
+
+hr {
+  border: 1px solid var(--nav-bg-color);
+}
+
+.navbar {
+  background-color: var(--nav-bg-color);
+  background-image: none;
+  background-repeat: no-repeat;
+ }
+
+ .nav-spacer {
+   height: 100px;
+ }
+
+.text-box {
+  padding: 20px;
+}
+
+.butn {
+  background-color: var(--nav-bg-color);
+  width: 200px;
+}
+
+.butn:hover {
+  background-color: var(--butn-hov-color);
+}
+
+.grey {
+  color: #60665c;
+}
+
+#chess:hover {
+  background-image: url("../img/chess-screen.png");
+}
