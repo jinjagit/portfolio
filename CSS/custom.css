@@ -1,7 +1,7 @@
 :root {
-  --body-bg-color: #ddffc9;
-  --nav-bg-color: #1a3d06;
-  --butn-hov-color: #32770a;
+  --body-bg-color: #e5eab4;
+  --nav-bg-color: #004d40;
+  --butn-hov-color: #1c8674;
 }
 
 body {
@@ -11,6 +11,11 @@ body {
 
 hr {
   border: 1px solid var(--nav-bg-color);
+}
+
+img {
+  display: block;
+  margin: auto;
 }
 
 .navbar {
@@ -29,6 +34,8 @@ hr {
 
 .butn {
   background-color: var(--nav-bg-color);
+  display: block;
+  margin: auto;
   width: 200px;
 }
 
@@ -38,6 +45,18 @@ hr {
 
 .grey {
   color: #60665c;
+}
+
+.icon {
+  background-color: var(--nav-bg-color);
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  margin: auto;
+}
+
+.icon:hover {
+  background-color: var(--butn-hov-color);
 }
 
 #chess:hover {
