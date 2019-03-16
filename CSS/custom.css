@@ -59,6 +59,10 @@ img {
   background-color: var(--butn-hov-color);
 }
 
+.img-fluid {
+  
+}
+
 #chess:hover {
   background-image: url("../img/chess-screen.png");
 }
