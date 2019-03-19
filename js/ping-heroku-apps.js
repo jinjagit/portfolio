@@ -40,7 +40,7 @@ function updateNotices(action) {
     } else if (action == 'green') {
       notices[i].style.color = '#004d40';
       notices[i].innerHTML = `Application server ACTIVE.`;
-      containers[i].style.backgroundColor = '#dcf7f2';
+      containers[i].style.backgroundColor = '#f7fffd';
       containers[i].style.borderColor = '#004d40';
     } else if (action == 'countdown') {
       notices[i].innerHTML = `This app's server is initializing and may be unresponsive for up to ${noticeTime} seconds.`;
