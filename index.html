@@ -237,7 +237,26 @@
     <div class="row">
       <div class="col-md-4 mb-4">
         <a href="https://youtu.be/9CCH4cYogmI">
-          <img class="img-fluid" src="img/chess.jpg" onmouseover="this.src='img/chess-screen.jpg';" onmouseout="this.src='img/chess.jpg';" alt="chess">
+          <!-- start carousel -->
+          <div id="chess" class="carousel slide carousel-fade" data-ride="carousel">
+            <ul class="carousel-indicators">
+              <li data-target="#chess" data-slide-to="0" class="active"></li>
+              <li data-target="#chess" data-slide-to="1"></li>
+              <li data-target="#chess" data-slide-to="2"></li>
+            </ul>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="img/chess1.jpg" alt="chess-1">
+              </div>
+              <div class="carousel-item">
+                <img src="img/chess2.jpg" alt="chess-2">
+              </div>
+              <div class="carousel-item">
+                <img src="img/chess3.jpg" alt="chess-3">
+              </div>
+            </div>
+          </div>
+          <!-- end carousel -->
         </a>
       </div>
       <div class="col-md-8 mb-4">
@@ -260,57 +279,26 @@
     </div>
 
     <div class="d-block d-md-none" style="height:30px;"></div>
-    <h2 class="d-block d-md-none" style="text-align:center;">Duty Timer</h2>
-    <div class="row">
-      <div class="col-md-4 mb-4">
-        <a href="https://duty-timer.simontharby.com/">
-          <img class="img-fluid" src="img/timer.jpg" onmouseover="this.src='img/timer-screen.jpg';" onmouseout="this.src='img/timer.jpg';" alt="social-light">
-        </a>
-      </div>
-      <div class="col-md-8 mb-4">
-        <h2 class="d-none d-md-block">Duty Timer</h2>
-        <p>A pomodoro clock (work / rest timer), implemented in 90% JavaScript, to produce an elegent and intuitive design which uses color prompts and simple controls to provide a pleasant user experience. Includes an optional audio alarm function, and progress bar. </p>
-        <div class="d-none d-md-block" style="height:15px;"></div>
-        <div class="row">
-          <div class="col-md-6 mb-2">
-            <a href="https://duty-timer.simontharby.com/">
-              <img class="butn" src="img/website-btn.png" alt="video">
-            </a>
-          </div>
-          <div class="col-md-6 mb-2">
-            <a href="https://github.com/jinjagit/pomodoro">
-              <img class="butn" src="img/code-btn.png" alt="code">
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="d-block d-md-none" style="height:30px;"></div>
     <h2 class="d-block d-md-none" style="text-align:center;">Calculator</h2>
     <div class="row">
       <div class="col-md-4 mb-4">
         <a href="https://calculator.simontharby.com/">
           <!-- start carousel -->
-          <div class="carousel slide carousel-fade" data-ride="carousel">
-
-            <!-- Indicators -->
+          <div id="calc" class="carousel slide carousel-fade" data-ride="carousel">
             <ul class="carousel-indicators">
-              <li data-target="#demo" data-slide-to="0" class="active"></li>
-              <li data-target="#demo" data-slide-to="1"></li>
-              <li data-target="#demo" data-slide-to="2"></li>
+              <li data-target="#calc" data-slide-to="0" class="active"></li>
+              <li data-target="#calc" data-slide-to="1"></li>
+              <li data-target="#calc" data-slide-to="2"></li>
             </ul>
-
-            <!-- The slideshow -->
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img src="img/calc.jpg" alt="Los Angeles">
+                <img src="img/calc.jpg" alt="calculator-1">
               </div>
               <div class="carousel-item">
-                <img src="img/calc-portrait.jpg" alt="Chicago">
+                <img src="img/calc-portrait.jpg" alt="calculator-2">
               </div>
               <div class="carousel-item">
-                <img src="img/calc-letterbox.jpg" alt="New York">
+                <img src="img/calc-letterbox.jpg" alt="calculator-3">
               </div>
             </div>
           </div>
@@ -329,6 +317,52 @@
           </div>
           <div class="col-md-6 mb-2">
             <a href="https://github.com/jinjagit/calculator">
+              <img class="butn" src="img/code-btn.png" alt="code">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-block d-md-none" style="height:30px;"></div>
+    <h2 class="d-block d-md-none" style="text-align:center;">Duty Timer</h2>
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <a href="https://duty-timer.simontharby.com/">
+          <!-- start carousel -->
+          <div id="timer" class="carousel slide carousel-fade" data-ride="carousel">
+            <ul class="carousel-indicators">
+              <li data-target="#timer" data-slide-to="0" class="active"></li>
+              <li data-target="#timer" data-slide-to="1"></li>
+              <li data-target="#timer" data-slide-to="2"></li>
+            </ul>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="img/timer1.jpg" alt="timer-1">
+              </div>
+              <div class="carousel-item">
+                <img src="img/timer2.jpg" alt="timer-2">
+              </div>
+              <div class="carousel-item">
+                <img src="img/timer3.jpg" alt="timer-3">
+              </div>
+            </div>
+          </div>
+          <!-- end carousel -->
+        </a>
+      </div>
+      <div class="col-md-8 mb-4">
+        <h2 class="d-none d-md-block">Duty Timer</h2>
+        <p>A pomodoro clock (work / rest timer), implemented in 90% JavaScript, to produce an elegent and intuitive design which uses color prompts and simple controls to provide a pleasant user experience. Includes an optional audio alarm function, and progress bar. </p>
+        <div class="d-none d-md-block" style="height:15px;"></div>
+        <div class="row">
+          <div class="col-md-6 mb-2">
+            <a href="https://duty-timer.simontharby.com/">
+              <img class="butn" src="img/website-btn.png" alt="video">
+            </a>
+          </div>
+          <div class="col-md-6 mb-2">
+            <a href="https://github.com/jinjagit/pomodoro">
               <img class="butn" src="img/code-btn.png" alt="code">
             </a>
           </div>
