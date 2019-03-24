@@ -73,7 +73,8 @@ function showNotices() {
 }
 
 let last_run = new Date;
-let apps = {'Dream Flights': 'https://dream-flights-simontharby.herokuapp.com/',
+let apps = {'Findr': 'https://findr-simontharby.herokuapp.com/',
+            'Dream Flights': 'https://dream-flights-simontharby.herokuapp.com/',
             'Social Light': 'https://social-light-simontharby.herokuapp.com/',
             'Members Only': 'https://members-only-simontharby.herokuapp.com/',
             'Blogger': 'https://blogger-simontharby.herokuapp.com/'};
