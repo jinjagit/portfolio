@@ -15,8 +15,10 @@ function pingIfDue() {
 
 function pingApp(index) {
   var p = new Ping();
+  //console.log(`ping call for: ${index}`); // DEBUG
+
   p.ping(apps[index], function(err, data) {
-    // console.log(`pinged ${index} in ${data} ms`);
+    // console.log(`pinged ${index} in ${data} ms`); // DEBUG
   });
 }
 
