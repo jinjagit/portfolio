@@ -22,6 +22,7 @@ img {
   background-color: var(--nav-bg-color);
   background-image: none;
   background-repeat: no-repeat;
+  border-style: none;
  }
 
  .nav-spacer {
@@ -43,8 +44,24 @@ img {
   background-color: var(--butn-hov-color);
 }
 
-.grey {
-  color: #60665c;
+#emailBtn {
+  background-color: var(--nav-bg-color);
+  display: inline-block;
+  margin-left: 23px;
+  width: 70px;
+  height: 50px
+}
+
+#emailBtn:hover {
+  background-color: var(--butn-hov-color);
+}
+
+#iconLinkedin {
+  /* no styling, as yet */
+}
+
+#iconGithub {
+  margin-left: 17px;
 }
 
 .icon {
@@ -52,11 +69,14 @@ img {
   width: 50px;
   height: 50px;
   display: inline-block;
-  margin: auto;
 }
 
 .icon:hover {
   background-color: var(--butn-hov-color);
+}
+
+.grey {
+  color: #60665c;
 }
 
 .notice {
