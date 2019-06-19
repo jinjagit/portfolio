@@ -1,38 +1,34 @@
 /* Pings Heroku apps when page opened or refreshed, or on any mouseover or click
-   if apps not pinged in last 15 minutes. Shows notice that Heroku app servers
+   if apps not pinged in last 15 minutes. Shows notices that Heroku app servers
    may be initializing when when page opened or refreshed, or on any mouseover
    or click if apps not pinged in last 30 minutes.*/
 
 (() => {
-
-  function pingIfDue() {
-    if ((new Date - last_run) / 1000 > 899) { // > 899 secs = 15 mins or more
-      if ((new Date - last_run) / 1000 > 1799) { // > 1799 secs = 30 mins or more
+  const pingIfDue = () => {
+    if ((new Date - lastPingAll) / 1000 > 899) { // > 899 secs = 15 mins or more
+      if ((new Date - lastPingAll) / 1000 > 1799) { // > 1799 secs = 30 mins or more
         showNotices();
       }
-      last_run = new Date;
+      lastPingAll = new Date;
       pingApps();
     }
-  }
+  };
 
-  function pingApp(index) {
+  const pingApp = (app) => {
     var p = new Ping();
-    //console.log(`ping call for: ${index}`); // DEBUG
 
-    p.ping(apps[index], function(err, data) {
-      // console.log(`pinged ${index} in ${data} ms`); // DEBUG
+    p.ping(app.url, function(err, data) {
+      // console.log(`pinged ${app.id} in ${data} ms`); // DEBUG
     });
-  }
+  };
 
-  function pingApps() {
-    let test = new Date;
-
-    for (var index in apps) {
-      pingApp(`${index}`);
+  const pingApps = () => {
+    for (let i = 0; i < apps.length; i++) {
+      pingApp(apps[i]);
     }
-  }
+  };
 
-  function updateNotices(action) {
+  const updateNotices = (action) => {
     for (i = 0; i < notices.length; i++) {
       if (action == 'hide') {
         notices[i].style.display = 'none';
@@ -52,9 +48,9 @@
         containers[i].style.display = 'block';
       }
     }
-  }
+  };
 
-  function animateNotices() {
+  const animateNotices = () => {
     const now = getTime();
     const delta = (now - lastUpdate) / FRAME_DURATION;
     noticeTime -= Math.round(delta);
@@ -68,20 +64,22 @@
     } else {
       updateNotices('countdown');
     }
-  }
+  };
 
-  function showNotices() {
+  const showNotices = () => {
     noticeTime = 31;
     lastUpdate = getTime();
     noticeAnim = setInterval(function(){ animateNotices() }, 1000);
-  }
+  };
 
-  let last_run = new Date;
-  let apps = {'Findr': 'https://findr-simontharby.herokuapp.com/',
-              'Dream Flights': 'https://dream-flights-simontharby.herokuapp.com/',
-              'Social Light': 'https://social-light-simontharby.herokuapp.com/',
-              'Members Only': 'https://members-only-simontharby.herokuapp.com/',
-              'Blogger': 'https://blogger-simontharby.herokuapp.com/'};
+  let lastPingAll = 0;
+  let apps = [
+    { id: 'findr', url: 'https://findr-simontharby.herokuapp.com/' },
+    { id: 'dFlights', url: 'https://dream-flights-simontharby.herokuapp.com/' },
+    { id: 'sLight', url: 'https://social-light-simontharby.herokuapp.com/' },
+    { id: 'mOnly', url: 'https://members-only-simontharby.herokuapp.com/' },
+    { id: 'blogger', url: 'https://blogger-simontharby.herokuapp.com/' }
+  ];
   const FRAME_DURATION = 1000;
   const getTime = typeof performance === 'function' ? performance.now : Date.now;
   let noticeTime = 31;
@@ -89,16 +87,10 @@
   let notices = document.querySelectorAll('.notice');
   let containers = document.querySelectorAll('.notice-container');
 
-  document.body.addEventListener('click', function() {
-    pingIfDue();
-  });
-
-  document.body.addEventListener('mouseover', function() {
-    pingIfDue();
-  });
+  document.body.addEventListener('click', pingIfDue);
+  document.body.addEventListener('mouseover', pingIfDue);
 
   updateNotices('hide');
-  showNotices();
-  pingApps();
+  pingIfDue();
 
 })();

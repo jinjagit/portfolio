@@ -1,16 +1,20 @@
 :root {
-  --body-bg-color: #e5eab4;
-  --nav-bg-color: #004d40;
+  --body-bg-color: #111111;
+  --nav-bg-color: #202020;
+  --para-color: #a1a1a1;
   --butn-hov-color: #1c8674;
+  --primary-color: #00b3a6;
+  --secondary-color: #70efde;
+  --title-color: #e2e2e2;
 }
 
 body {
   background-color: var(--body-bg-color);
-  color: var(--nav-bg-color);
+  color: var(--para-color);
 }
 
 hr {
-  border: 1px solid var(--nav-bg-color);
+  border: 1px solid var(--primary-color);
 }
 
 img {
@@ -18,15 +22,38 @@ img {
   margin: auto;
 }
 
+h1 {
+  color: var(--title-color);
+}
+
+h2, h3 {
+  color: var(--primary-color);
+}
+
+a {
+  color: var(--primary-color);
+}
+
+a:hover {
+  color: var(--secondary-color);
+}
+
 .navbar {
   background-color: var(--nav-bg-color);
   background-image: none;
   background-repeat: no-repeat;
-  border-style: none;
+  border-style: solid;
+  border-width: 0px 0px 1px 0px;
+  border-color: var(--primary-color);
  }
 
  .nav-spacer {
    height: 100px;
+ }
+
+ .small-heading {
+   color: var(--title-color);
+   font-weight: bold;
  }
 
 .text-box {
@@ -34,18 +61,18 @@ img {
 }
 
 .butn {
-  background-color: var(--nav-bg-color);
+  background-color: var(--primary-color);
   display: block;
   margin: auto;
   width: 200px;
 }
 
 .butn:hover {
-  background-color: var(--butn-hov-color);
+  background-color: var(--secondary-color);
 }
 
 #emailBtn {
-  background-color: var(--nav-bg-color);
+  background-color: var(--primary-color);
   display: inline-block;
   margin-left: 23px;
   width: 70px;
@@ -53,7 +80,7 @@ img {
 }
 
 #emailBtn:hover {
-  background-color: var(--butn-hov-color);
+  background-color: var(--secondary-color);
 }
 
 #iconLinkedin {
@@ -65,14 +92,14 @@ img {
 }
 
 .icon {
-  background-color: var(--nav-bg-color);
+  background-color: var(--primary-color);
   width: 50px;
   height: 50px;
   display: inline-block;
 }
 
 .icon:hover {
-  background-color: var(--butn-hov-color);
+  background-color: var(--secondary-color);
 }
 
 .grey {
