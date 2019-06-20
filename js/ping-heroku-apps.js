@@ -16,7 +16,7 @@
 
   const pingApp = (app) => {
     var p = new Ping();
-
+    
     p.ping(app.url, function(err, data) {
       // console.log(`pinged ${app.id} in ${data} ms`); // DEBUG
     });
