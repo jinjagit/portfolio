@@ -1,15 +1,18 @@
-/* Pings Heroku apps when page opened or refreshed, or on any mouseover or click
-   if apps not pinged in last 15 minutes. Shows notices that Heroku app servers
-   may be initializing when when page opened or refreshed, or on any mouseover
-   or click if apps not pinged in last 30 minutes.*/
+/* Pings Heroku apps on any mouseover or click if apps not pinged in last 15
+   minutes. Shows 'initializing redirect' view while server(s) start if any
+   link to a Heroku app is clicked when servers asleep (30+ minutes without
+   ping && less than 30 seconds after new pings caused by mouse activity). */
 
 (() => {
   const pingIfDue = () => {
-    if ((new Date - lastPingAll) / 1000 > 899) { // > 899 secs = 15 mins or more
-      if ((new Date - lastPingAll) / 1000 > 1799) { // > 1799 secs = 30 mins or more
+    if ((Date.now() - lastPingAll) / 1000 > 899) { // > 899 secs = 15 mins or more
+      if ((Date.now() - lastPingAll) / 1000 > 1799) { // > 1799 secs = 30 mins or more
         showNotices();
       }
-      lastPingAll = new Date;
+      lastPingAll = Date.now();
+      if (storageAvailable('localStorage')) {
+        localStorage.setItem('lastPingAll', JSON.stringify(lastPingAll));
+      }
       pingApps();
     }
   };
@@ -74,6 +77,23 @@
     noticeAnim = setInterval(function(){ animateNotices() }, 1000);
   };
 
+  const storageAvailable = (type) => { // from: https://developer.mozilla.org
+    var storage;
+    try {
+      storage = window[type];
+      var x = '__storage_test__';
+      storage.setItem(x, x);
+      storage.removeItem(x);
+      return true;
+    }
+    catch(e) {
+      return e instanceof DOMException && (
+        e.code === 22 || e.code === 1014 || e.name === 'QuotaExceededError' ||
+        e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+        (storage && storage.length !== 0);
+    }
+  };
+
   let lastPingAll = 0;
   let apps = [
     { name: 'findr', url: 'https://findr-simontharby.herokuapp.com/' },
@@ -92,7 +112,18 @@
   document.body.addEventListener('click', pingIfDue);
   document.body.addEventListener('mouseover', pingIfDue);
 
-  updateNotices('hide');
+  if (storageAvailable('localStorage')) {
+    if(localStorage.getItem('lastPingAll')) {
+      lastPingStored = JSON.parse(localStorage.getItem('lastPingAll'));
+      if (lastPingStored != undefined && lastPingStored < Date.now()) {
+        lastPingAll = lastPingStored;
+      }
+    }
+  }
+
+  updateNotices('hide'); // ? remove when new initializing view created ?
   pingIfDue();
+
+  // console.log(storageAvailable('localStorage')); // DEBUG
 
 })();
