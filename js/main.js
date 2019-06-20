@@ -16,7 +16,9 @@
 
   const pingApp = (app) => {
     var p = new Ping();
-    
+
+    console.log(`pinging: ${app.name}`);
+
     p.ping(app.url, function(err, data) {
       // console.log(`pinged ${app.id} in ${data} ms`); // DEBUG
     });
@@ -74,11 +76,11 @@
 
   let lastPingAll = 0;
   let apps = [
-    { id: 'findr', url: 'https://findr-simontharby.herokuapp.com/' },
-    { id: 'dFlights', url: 'https://dream-flights-simontharby.herokuapp.com/' },
-    { id: 'sLight', url: 'https://social-light-simontharby.herokuapp.com/' },
-    { id: 'mOnly', url: 'https://members-only-simontharby.herokuapp.com/' },
-    { id: 'blogger', url: 'https://blogger-simontharby.herokuapp.com/' }
+    { name: 'findr', url: 'https://findr-simontharby.herokuapp.com/' },
+    { name: 'Dream Flights', url: 'https://dream-flights-simontharby.herokuapp.com/' },
+    { name: 'Social Light', url: 'https://social-light-simontharby.herokuapp.com/' },
+    { name: 'Members Only', url: 'https://members-only-simontharby.herokuapp.com/' },
+    { name: 'Blogger', url: 'https://blogger-simontharby.herokuapp.com/' }
   ];
   const FRAME_DURATION = 1000;
   const getTime = typeof performance === 'function' ? performance.now : Date.now;
