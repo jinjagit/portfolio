@@ -1,82 +1,10 @@
 /* Pings Heroku apps on any mouseover or click if apps not pinged in last 15
-   minutes. Shows 'initializing redirect' view while server(s) start if any
+   minutes. Shows 'initializing server' view while server(s) start if any
    link to a Heroku app is clicked when servers asleep (30+ minutes without
-   ping && less than 30 seconds after new pings caused by mouse activity). */
+   ping && less than 30 seconds after last pings), and then redirects to
+   clicked app link when server up (30 seconds after pings). */
 
 (() => {
-  const pingIfDue = () => {
-    if ((Date.now() - lastPingAll) / 1000 > 899) { // > 899 secs = 15 mins or more
-      if ((Date.now() - lastPingAll) / 1000 > 1799) { // > 1799 secs = 30 mins or more
-        showNotices();
-      }
-      lastPingAll = Date.now();
-      if (storageAvailable('localStorage')) {
-        localStorage.setItem('lastPingAll', JSON.stringify(lastPingAll));
-      }
-      pingApps();
-    }
-  };
-
-  const pingApp = (app) => {
-    var p = new Ping();
-
-    console.log(`pinging: ${app.name}`);
-
-    p.ping(app.url, function(err, data) {
-      // console.log(`pinged ${app.id} in ${data} ms`); // DEBUG
-    });
-  };
-
-  const pingApps = () => {
-    for (let i = 0; i < apps.length; i++) {
-      pingApp(apps[i]);
-    }
-  };
-
-  const updateNotices = (action) => {
-    for (i = 0; i < notices.length; i++) {
-      if (action == 'hide') {
-        notices[i].style.display = 'none';
-        containers[i].style.display = 'none';
-      } else if (action == 'orange') {
-        notices[i].style.color = '#cc6200';
-        containers[i].style.backgroundColor = '#fcf3ea';
-        containers[i].style.borderColor = '#cc6200';
-      } else if (action == 'green') {
-        notices[i].style.color = '#004d40';
-        notices[i].innerHTML = `Application server ACTIVE.`;
-        containers[i].style.backgroundColor = '#f7fffd';
-        containers[i].style.borderColor = '#004d40';
-      } else if (action == 'countdown') {
-        notices[i].innerHTML = `This app's server is initializing and may be unresponsive for up to ${noticeTime} seconds.`;
-        notices[i].style.display = 'block';
-        containers[i].style.display = 'block';
-      }
-    }
-  };
-
-  const animateNotices = () => {
-    const now = getTime();
-    const delta = (now - lastUpdate) / FRAME_DURATION;
-    noticeTime -= Math.round(delta);
-    updateNotices('orange');
-    lastUpdate = now;
-    if (noticeTime < -5) {
-      updateNotices('hide');
-      clearInterval(noticeAnim);
-    } else if (noticeTime <= 0) {
-      updateNotices('green');
-    } else {
-      updateNotices('countdown');
-    }
-  };
-
-  const showNotices = () => {
-    noticeTime = 31;
-    lastUpdate = getTime();
-    noticeAnim = setInterval(function(){ animateNotices() }, 1000);
-  };
-
   const storageAvailable = (type) => { // from: https://developer.mozilla.org
     var storage;
     try {
@@ -94,20 +22,118 @@
     }
   };
 
+  const pingIfDue = () => {
+    let pingDelta = (Date.now() - lastPingAll) / 1000;
+
+    if (pingDelta > 899) { // 900 secs == 15 mins
+      pingDelta > 120 ? downtime = pingDelta - 120 : downtime = 0;
+      lastPingAll = Date.now();
+      if (storageAvailable('localStorage')) {
+        localStorage.setItem('lastPingAll', JSON.stringify(lastPingAll));
+      }
+      pingApps();
+    }
+  };
+
+  const pingApp = (appKey) => {
+    var p = new Ping();
+
+    // console.log(`pinging: ${appKey} url: ${apps[appKey]}`); // DEBUG
+
+    p.ping(apps[appKey], function(err, data) {
+      // console.log(`pinged ${appKey} in ${data} ms`); // DEBUG
+    });
+  };
+
+  const pingApps = () => {
+    for (var key in apps) {
+      pingApp(key);
+    }
+  };
+
+  const redirectCountdownTick = (appKey) => {
+    const now = getTime();
+    const delta = (now - lastUpdate) / FRAME_DURATION;
+    waitTime -= Math.round(delta);
+    lastUpdate = now;
+    if (waitTime < 0) {
+      clearInterval(redirectCountdown);
+      redirect.style.display = 'none';
+      window.location.href = apps[appKey];
+    } else {
+      redirectTime.innerHTML = `${waitTime}`;
+    }
+  };
+
+  const startRedirectCountdown = (appKey) => {
+    waitTime = Math.round(30 - ((Date.now() - lastPingAll) / 1000));
+    redirectTime.innerHTML = `${waitTime}`;
+    lastUpdate = getTime();
+    redirectCountdown = setInterval(function() {
+      redirectCountdownTick(appKey);
+    }, 1000);
+  };
+
+  const showRedirect = (appKey) => {
+    content.style.display = 'none';
+    redirect.style.display = 'block';
+    redirectText.innerHTML = ` ${appKey.replace(/_/g, " ")}`;
+    startRedirectCountdown(appKey);
+  };
+
+  const cancelRedirect = () => {
+    clearInterval(redirectCountdown);
+    redirect.style.display = 'none';
+    content.style.display = 'block';
+  };
+
+  const addClickToLinks = (herokuApps) => {
+    for (let i = 0; i < herokuApps.length; i++) {
+      herokuApps[i].addEventListener("click", function() {
+        pingIfDue();
+        if (((Date.now() - lastPingAll) / 1000) < 30 && downtime > 1799) { // 1800 secs == 30 mins
+          showRedirect(this.classList[0]);
+        } else {
+          window.location.href = apps[this.classList[0]];
+        }
+      });
+    }
+  };
+
+  window.addEventListener( "pageshow", function ( event ) { // from: https://stackoverflow.com/questions/43043113/how-to-force-reloading-a-page-when-using-browser-back-button
+    var historyTraversal = event.persisted ||
+                           ( typeof window.performance != "undefined" &&
+                                window.performance.navigation.type === 2 );
+    if ( historyTraversal ) { // reload page if navigate back to it
+      window.location.reload();
+    }
+  });
+
+  let content = document.getElementById('content');
+  let redirect = document.getElementById('redirect');
+  redirect.style.display = 'none';
+  content.style.display = 'block';
+
   let lastPingAll = 0;
-  let apps = [
-    { name: 'findr', url: 'https://findr-simontharby.herokuapp.com/' },
-    { name: 'Dream Flights', url: 'https://dream-flights-simontharby.herokuapp.com/' },
-    { name: 'Social Light', url: 'https://social-light-simontharby.herokuapp.com/' },
-    { name: 'Members Only', url: 'https://members-only-simontharby.herokuapp.com/' },
-    { name: 'Blogger', url: 'https://blogger-simontharby.herokuapp.com/' }
-  ];
+  let apps = {
+    Findr: 'https://findr-simontharby.herokuapp.com/',
+    Dream_Flights: 'https://dream-flights-simontharby.herokuapp.com/',
+    Social_Light: 'https://social-light-simontharby.herokuapp.com/',
+    Members_Only: 'https://members-only-simontharby.herokuapp.com/',
+    Blogger: 'https://blogger-simontharby.herokuapp.com/'
+  };
   const FRAME_DURATION = 1000;
   const getTime = typeof performance === 'function' ? performance.now : Date.now;
-  let noticeTime = 31;
+  let waitTime = 0; // set to: 0
+  let downtime = 0;
   let lastUpdate = getTime();
-  let notices = document.querySelectorAll('.notice');
-  let containers = document.querySelectorAll('.notice-container');
+  let redirectText = document.getElementById('redirectText');
+  let redirectTime = document.getElementById('redirectTime');
+  let cancel = document.getElementById('cancel');
+  let herokuApps = document.querySelectorAll('.heroku');
+
+  cancel.addEventListener('click', cancelRedirect);
+  addClickToLinks(herokuApps);
 
   document.body.addEventListener('click', pingIfDue);
   document.body.addEventListener('mouseover', pingIfDue);
@@ -121,9 +147,6 @@
     }
   }
 
-  updateNotices('hide'); // ? remove when new initializing view created ?
   pingIfDue();
-
-  // console.log(storageAvailable('localStorage')); // DEBUG
 
 })();
