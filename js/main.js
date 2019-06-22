@@ -8,8 +8,8 @@
   const pingIfDue = () => {
     let pingDelta = (Date.now() - lastPingAll) / 1000;
 
-    if (pingDelta > 60) { // 900 secs == 15 mins
-      pingDelta > 120 ? downtime = pingDelta - 120 : downtime = 0; // 1800 secs == 30 mins
+    if (pingDelta > 900) { // 900 secs == 15 mins
+      pingDelta > 1800 ? downtime = pingDelta - 1800 : downtime = 0; // 1800 secs == 30 mins
       lastPingAll = Date.now();
       if (storageAvailable('localStorage')) {
         localStorage.setItem('lastPingAll', JSON.stringify(lastPingAll));
