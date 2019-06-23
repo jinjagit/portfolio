@@ -53,7 +53,11 @@ a:hover {
    height: 100px;
  }
 
-#hamburger:focus, #hamburger:active {
+.navbar-toggler {
+  border-style: none;
+}
+
+.navbar-toggler:focus, .navbar-toggler:active {
   outline: none;
 }
 
