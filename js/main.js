@@ -133,8 +133,6 @@
 
   let content = document.getElementById('content');
   let redirect = document.getElementById('redirect');
-  redirect.style.display = 'none';
-  content.style.display = 'block';
 
   let lastPingAll = 0;
   let apps = {
@@ -163,9 +161,6 @@
     if (redirect.style.display == 'block') { cancelRedirect(); }
   });
   addClickToLinks(herokuApps);
-
-  navMenu.style.display = 'run-in';
-  hamburger.style.display = 'run-in';
 
   document.body.addEventListener('click', pingIfDue);
   document.body.addEventListener('mouseover', pingIfDue);
