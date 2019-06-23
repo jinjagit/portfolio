@@ -53,7 +53,9 @@ a:hover {
    height: 100px;
  }
 
-
+#hamburger {
+  text-decoration: none;
+}
 
  #navMenu {
    display: block;
