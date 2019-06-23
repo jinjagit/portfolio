@@ -55,12 +55,13 @@ a:hover {
 
 .navbar-toggler {
   border-style: none;
+  margin-top: 2px;
+  margin-left: 7px;
+
 }
 
 .navbar-toggler:focus, .navbar-toggler:active {
   outline: none;
-  margin-top: 1px;
-  margin-left: 5px;
 }
 
 .navbar-collapse {
