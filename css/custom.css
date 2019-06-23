@@ -59,6 +59,11 @@ a:hover {
 
 .navbar-toggler:focus, .navbar-toggler:active {
   outline: none;
+  margin-top: 1px;
+  margin-left: 5px;
+}
+
+.navbar-collapse {
 }
 
  #navMenu {
