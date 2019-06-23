@@ -59,7 +59,7 @@
 
   const showRedirect = (appKey) => {
     content.style.display = 'none';
-    navMenu.style.display = 'none';
+    //navMenu.style.display = 'none';
     redirect.style.display = 'block';
     redirectText.innerHTML = ` ${appKey.replace(/_/g, " ")}`;
     startRedirectCountdown(appKey);
@@ -69,7 +69,7 @@
     clearInterval(redirectCountdown);
     redirect.style.display = 'none';
     content.style.display = 'block';
-    navMenu.style.display = 'block';
+    //navMenu.style.display = 'block';
     if (storageAvailable('localStorage')) { restoreScrollPosn(); }
   };
 
@@ -142,7 +142,7 @@
   let redirectInSecs = 0; // set to: 0
   let downtime = 0;
   let lastUpdate = getTime();
-  let navMenu = document.getElementById('navMenu');
+  //let navMenu = document.getElementById('navMenu');
   let redirectText = document.getElementById('redirectText');
   let redirectTime = document.getElementById('redirectTime');
   let cancel = document.getElementById('cancel');
@@ -150,7 +150,7 @@
 
   cancel.addEventListener('click', cancelRedirect);
   addClickToLinks(herokuApps);
-  navMenu.style.display = 'block';
+  //navMenu.style.display = 'block';
 
   document.body.addEventListener('click', pingIfDue);
   document.body.addEventListener('mouseover', pingIfDue);
