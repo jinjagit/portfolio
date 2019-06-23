@@ -1,8 +1,8 @@
 /* Pings Heroku apps on any mouseover or click if apps not pinged in last 15
    minutes. Shows 'initializing server' view while server(s) start if any
-   link to a Heroku app is clicked when servers asleep (30+ minutes without
-   ping && less than 30 seconds after last pings), and then redirects to
-   clicked app link when server up (30 seconds after pings). */
+   link to a Heroku app is clicked when servers probably asleep (30+ minutes
+   between pings && less than 30 seconds after last pings), and then redirects
+   to clicked app link when server up (30 seconds after pings). */
 
 (() => {
   const pingIfDue = () => {
