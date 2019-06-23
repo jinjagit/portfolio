@@ -60,6 +60,10 @@ a:hover {
    display: block;
  }
 
+ #redirect {
+   display: none;
+ }
+
  .small-heading {
    color: var(--title-color);
    font-weight: bold;
