@@ -79,7 +79,6 @@
     if (localStorage.getItem('scrollPosn')) {
       let scrollPosn = JSON.parse(localStorage.getItem('scrollPosn'));
       if (scrollPosn != undefined && scrollPosn > 0) {
-        console.log(`scrollPosn: ${scrollPosn}`);
         window.scrollTo(0, scrollPosn);
         localStorage.setItem('scrollPosn', JSON.stringify(0));
       }
@@ -145,6 +144,7 @@
   let downtime = 0;
   let lastUpdate = getTime();
 
+  let logo = document.getElementById('logo');
   let navMenu = document.getElementById('navMenu');
   let hamburger = document.getElementById('hamburger');
   let redirectText = document.getElementById('redirectText');
@@ -153,6 +153,9 @@
   let herokuApps = document.querySelectorAll('.heroku');
 
   cancel.addEventListener('click', cancelRedirect);
+  logo.addEventListener('click', function() {
+    if (redirect.style.display == 'block') { cancelRedirect(); }
+  });
   addClickToLinks(herokuApps);
 
   navMenu.style.display = 'run-in';
