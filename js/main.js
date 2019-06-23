@@ -8,8 +8,8 @@
   const pingIfDue = () => {
     let pingDelta = (Date.now() - lastPingAll) / 1000;
 
-    if (pingDelta > 900) { // 900 secs == 15 mins / 1800 secs == 30 mins
-      if (pingDelta > 1800) {
+    if (pingDelta > 60) { // 900 secs == 15 mins / 1800 secs == 30 mins
+      if (pingDelta > 120) {
         wakeDate = Date.now();
         if (storageAvailable('localStorage')) {
           localStorage.setItem('wakeDate', JSON.stringify(wakeDate));
@@ -23,17 +23,16 @@
     }
   };
 
-  const pingApp = (appKey) => {
-    var p = new Ping();
-
-    // console.log(`pinging: ${appKey} url: ${apps[appKey]}`); // DEBUG
-
-    p.ping(apps[appKey], function(err, data) {
-      // console.log(`pinged ${appKey} in ${data} ms`); // DEBUG
-    });
-  };
-
   const pingApps = () => {
+    const pingApp = (appKey) => {
+      var p = new Ping();
+      // console.log(`pinging: ${appKey} url: ${apps[appKey]}`); // DEBUG
+
+      p.ping(apps[appKey], function(err, data) {
+        console.log(`pinged ${apps[appKey]} in ${data} ms`); // DEBUG
+      });
+    };
+
     for (var key in apps) {
       pingApp(key);
     }
@@ -65,7 +64,6 @@
   const showRedirect = (appKey) => {
     content.style.display = 'none';
     navMenu.style.display = 'none';
-    hamburger.style.display = 'none';
     redirect.style.display = 'block';
     redirectText.innerHTML = ` ${appKey.replace(/_/g, " ")}`;
     startRedirectCountdown(appKey);
@@ -74,9 +72,8 @@
   const cancelRedirect = () => {
     clearInterval(redirectCountdown);
     redirect.style.display = 'none';
+    navMenu.style.display = 'block';
     content.style.display = 'block';
-    navMenu.style.display = 'run-in';
-    hamburger.style.display = 'run-in';
     if (storageAvailable('localStorage')) { restoreScrollPosn(); }
   };
 
@@ -94,7 +91,6 @@
     for (let i = 0; i < herokuApps.length; i++) {
       herokuApps[i].addEventListener("click", function() {
         pingIfDue();
-        console.log(`since wakeDate: ${((Date.now() - wakeDate) / 1000)}`);
         if (((Date.now() - wakeDate) / 1000) < 30) {
           if (storageAvailable('localStorage')) {
             localStorage.setItem('scrollPosn', JSON.stringify(window.pageYOffset));
@@ -131,9 +127,6 @@
     if (historyTraversal) { window.location.reload(); }
   });
 
-  let content = document.getElementById('content');
-  let redirect = document.getElementById('redirect');
-
   let lastPingAll = 0;
   let apps = {
     Findr: 'https://findr-simontharby.herokuapp.com/',
@@ -148,9 +141,10 @@
   let wakeDate = 0;
   let lastUpdate = getTime();
 
+  let content = document.getElementById('content');
+  let redirect = document.getElementById('redirect');
   let logo = document.getElementById('logo');
   let navMenu = document.getElementById('navMenu');
-  let hamburger = document.getElementById('hamburger');
   let redirectText = document.getElementById('redirectText');
   let redirectTime = document.getElementById('redirectTime');
   let cancel = document.getElementById('cancel');
