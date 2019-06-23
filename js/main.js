@@ -8,8 +8,13 @@
   const pingIfDue = () => {
     let pingDelta = (Date.now() - lastPingAll) / 1000;
 
-    if (pingDelta > 900) { // 900 secs == 15 mins
-      pingDelta > 1800 ? downtime = pingDelta - 1800 : downtime = 0; // 1800 secs == 30 mins
+    if (pingDelta > 900) { // 900 secs == 15 mins / 1800 secs == 30 mins
+      if (pingDelta > 1800) {
+        wakeDate = Date.now();
+        if (storageAvailable('localStorage')) {
+          localStorage.setItem('wakeDate', JSON.stringify(wakeDate));
+        }
+      }
       lastPingAll = Date.now();
       if (storageAvailable('localStorage')) {
         localStorage.setItem('lastPingAll', JSON.stringify(lastPingAll));
@@ -89,7 +94,8 @@
     for (let i = 0; i < herokuApps.length; i++) {
       herokuApps[i].addEventListener("click", function() {
         pingIfDue();
-        if (((Date.now() - lastPingAll) / 1000) < 30 && downtime > 0) {
+        console.log(`since wakeDate: ${((Date.now() - wakeDate) / 1000)}`);
+        if (((Date.now() - wakeDate) / 1000) < 30) {
           if (storageAvailable('localStorage')) {
             localStorage.setItem('scrollPosn', JSON.stringify(window.pageYOffset));
           }
@@ -141,7 +147,7 @@
   const FRAME_DURATION = 1000;
   const getTime = typeof performance === 'function' ? performance.now : Date.now;
   let redirectInSecs = 0; // set to: 0
-  let downtime = 0;
+  let wakeDate = 0;
   let lastUpdate = getTime();
 
   let logo = document.getElementById('logo');
@@ -169,6 +175,12 @@
       let lastPingStored = JSON.parse(localStorage.getItem('lastPingAll'));
       if (lastPingStored != undefined && lastPingStored < Date.now()) {
         lastPingAll = lastPingStored;
+      }
+    }
+    if (localStorage.getItem('wakeDate')) {
+      let wakeDateStored = JSON.parse(localStorage.getItem('wakeDate'));
+      if (wakeDateStored != undefined && wakeDateStored < Date.now()) {
+        wakeDate = wakeDateStored;
       }
     }
     restoreScrollPosn();
