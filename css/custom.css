@@ -67,9 +67,9 @@ a:hover {
   background-image: url("../img/toggle-icon-hover.svg") !important;
 }
 
- #logo {
-   color: var(--title-color);
- }
+#logo {
+  color: var(--title-color);
+}
 
 .nav-spacer {
   height: 100px;
@@ -81,14 +81,6 @@ a:hover {
 
 .navbar-toggler:focus, .navbar-toggler:active {
   outline: none;
-}
-
-.navbar-toggler:focus > .navbar-toggler-icon {
-  background-image: url("../img/toggle-icon.svg") !important;
-}
-
-.navbar-toggler:active > .navbar-toggler-icon {
-  background-image: url("../img/toggle-icon.svg") !important;
 }
 
 #content {
