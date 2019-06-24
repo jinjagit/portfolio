@@ -67,10 +67,6 @@ a:hover {
   background-image: url("../img/toggle-icon-hover.svg") !important;
 }
 
-.navbar-toggler-icon:focus, .navbar-toggler-icon:active {
-  background-image: url("../img/toggle-icon.svg") !important;
-}
-
  #logo {
    color: var(--title-color);
  }
@@ -86,10 +82,6 @@ a:hover {
 .navbar-toggler:focus, .navbar-toggler:active {
   outline: none;
 }
-/*
-#navMenu {
-  display: block;
-}*/
 
 #content {
   display: block;
