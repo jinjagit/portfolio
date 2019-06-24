@@ -61,6 +61,7 @@ a:hover {
 .navbar-toggler-icon {
   background-image: url("../img/toggle-icon.svg") !important;
   border-style: none;
+  margin-right: -20px;
 }
 
 .navbar-toggler-icon:hover {
