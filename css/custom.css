@@ -83,11 +83,11 @@ a:hover {
   outline: none;
 }
 
-.navbar-toggler:focus > .navbar-toggler {
+.navbar-toggler:focus > .navbar-toggler-icon {
   background-image: url("../img/toggle-icon.svg") !important;
 }
 
-.navbar-toggler:active > .navbar-toggler {
+.navbar-toggler:active > .navbar-toggler-icon {
   background-image: url("../img/toggle-icon.svg") !important;
 }
 
