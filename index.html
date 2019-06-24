@@ -19,33 +19,56 @@
   </head>
 
   <body>
-    <!-- navbar -->
-    <nav class="navbar fixed-top navbar-expand-md navbar-dark">
-      <div class="container">
-        <a id="logo" class="navbar-brand" href="#profile">Simon Tharby</a>
-        <div id="navMenu">
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="nav navbar-nav ml-auto">
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" href="#profile">Profile</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" href="#portfolio">Portfolio</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" href="#blog">Blog</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" href="#contact">Contact</a>
-              </li>
-            </ul>
-          </div>
-        </div>
+    <!--Navbar-->
+<nav class="navbar fixed-top navbar-dark navbar-1 white">
+  <div class="container">
+
+    <!-- Navbar brand -->
+    <a id="logo" class="navbar-brand" href="#profile">Simon Tharby</a>
+
+    <!-- Fixed Links -->
+    <div class="d-none d-md-block">
+      <div id="fixedNavLinks">
+          <a class="nav-link fixed-nav-link" href="#profile">Profile</a>
+          <a class="nav-link fixed-nav-link" href="#portfolio">Portfolio</a>
+          <a class="nav-link fixed-nav-link" href="#blog">Blog</a>
+          <a class="nav-link fixed-nav-link" href="#contact">Contact</a>
       </div>
-    </nav>
+    </div>
+    <!-- Fixed Links -->
+
+    <!-- Collapse button -->
+    <div class="d-block d-md-none">
+      <button id="navToggle" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent15"
+        aria-controls="navbarSupportedContent15" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    </div>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent15">
+
+      <!-- Expandable Links -->
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" href="#profile">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" href="#portfolio">Portfolio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" href="#blog">Blog</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" href="#contact">Contact</a>
+        </li>
+      </ul>
+      <!-- Expandable Links -->
+
+    </div>
+    <!-- Collapsible content -->
+
+  </div>
+</nav>
+<!--/.Navbar-->
 
     <main role="main" class="container">
       <div id="content">

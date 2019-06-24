@@ -49,44 +49,60 @@ a:hover {
   border-color: var(--primary-color);
  }
 
- .nav-spacer {
-   height: 100px;
+ .fixed-nav-link {
+   display: inline;
+   color: var(--para-color);
  }
+
+ .fixed-nav-link:hover {
+   color: var(--title-color);
+ }
+
+.navbar-toggler-icon {
+  background-image: url("../img/toggle-icon.svg") !important;
+  border-style: none;
+}
+
+.navbar-toggler-icon:hover {
+  background-image: url("../img/toggle-icon-hover.svg") !important;
+}
+
+ #logo {
+   color: var(--title-color);
+ }
+
+.nav-spacer {
+  height: 100px;
+}
 
 .navbar-toggler {
   border-style: none;
-  margin-top: 2px;
-  margin-left: 8px;
-
 }
 
 .navbar-toggler:focus, .navbar-toggler:active {
   outline: none;
 }
+/*
+#navMenu {
+  display: block;
+}*/
 
-.navbar-collapse {
+#content {
+  display: block;
 }
 
- #navMenu {
-   display: block;
- }
+#redirect {
+  display: none;
+}
 
- #content {
-   display: block;
- }
+.small-heading {
+  color: var(--title-color);
+  font-weight: bold;
+}
 
- #redirect {
-   display: none;
- }
-
- .small-heading {
-   color: var(--title-color);
-   font-weight: bold;
- }
-
- .highlight {
-   color: var(--title-color);
- }
+.highlight {
+  color: var(--title-color);
+}
 
 .text-box {
   padding: 20px;
@@ -208,8 +224,8 @@ a:hover {
 }
 
 @-moz-keyframes loaderSprite {
-    from { background-position: 0px; }
-    to { background-position: -2000px; }
+  from { background-position: 0px; }
+  to { background-position: -2000px; }
 }
 
 @keyframes loaderSprite {

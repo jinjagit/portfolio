@@ -8,8 +8,8 @@
   const pingIfDue = () => {
     let pingDelta = (Date.now() - lastPingAll) / 1000;
 
-    if (pingDelta > 900) { // 900 secs == 15 mins / 1800 secs == 30 mins
-      if (pingDelta > 1800) {
+    if (pingDelta > 60) { // 900 secs == 15 mins / 1800 secs == 30 mins
+      if (pingDelta > 120) {
         wakeDate = Date.now();
         if (storageAvailable('localStorage')) {
           localStorage.setItem('wakeDate', JSON.stringify(wakeDate));
@@ -26,11 +26,11 @@
   const pingApps = () => {
     const pingApp = (appKey) => {
       var p = new Ping();
-      // console.log(`pinging: ${appKey} url: ${apps[appKey]}`); // DEBUG
-
+      console.log(`pinging: ${appKey} url: ${apps[appKey]}`); // DEBUG
+/*
       p.ping(apps[appKey], function(err, data) {
         // console.log(`pinged ${apps[appKey]} in ${data} ms`); // DEBUG
-      });
+      });*/
     };
 
     for (var key in apps) { pingApp(key); }
@@ -61,7 +61,8 @@
 
   const showRedirect = (appKey) => {
     content.style.display = 'none';
-    navMenu.style.display = 'none';
+    navToggle.style.display = 'none';
+    fixedNavLinks.style.display = 'none';
     redirect.style.display = 'block';
     redirectText.innerHTML = ` ${appKey.replace(/_/g, " ")}`;
     startRedirectCountdown(appKey);
@@ -70,7 +71,8 @@
   const cancelRedirect = () => {
     clearInterval(redirectCountdown);
     redirect.style.display = 'none';
-    navMenu.style.display = 'block';
+    navToggle.style.display = 'block';
+    fixedNavLinks.style.display = 'block';
     content.style.display = 'block';
     if (storageAvailable('localStorage')) { restoreScrollPosn(); }
   };
@@ -142,7 +144,8 @@
   let content = document.getElementById('content');
   let redirect = document.getElementById('redirect');
   let logo = document.getElementById('logo');
-  let navMenu = document.getElementById('navMenu');
+  let navToggle = document.getElementById('navToggle');
+  let fixedNavLinks = document.getElementById('fixedNavLinks');
   let redirectText = document.getElementById('redirectText');
   let redirectTime = document.getElementById('redirectTime');
   let cancel = document.getElementById('cancel');
