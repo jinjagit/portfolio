@@ -56,6 +56,10 @@ a:hover {
   border-color: var(--primary-color);
  }
 
+ #logo {
+   color: var(--title-color);
+ }
+
  .fixed-nav-link {
    display: inline;
    color: var(--para-color);
@@ -75,20 +79,16 @@ a:hover {
   background-image: url("../img/toggle-icon-hover.svg") !important;
 }
 
-#logo {
-  color: var(--title-color);
-}
-
-.nav-spacer {
-  height: 100px;
-}
-
 .navbar-toggler {
   border-style: none;
 }
 
 .navbar-toggler:focus, .navbar-toggler:active {
   outline: none;
+}
+
+.nav-spacer {
+  height: 100px;
 }
 
 #content {

@@ -127,7 +127,9 @@
     if (historyTraversal) { window.location.reload(); }
   });
 
-  let lastPingAll = 0;
+  const FRAME_DURATION = 1000;
+  const getTime = typeof performance === 'function' ? performance.now : Date.now;
+
   let apps = {
     Findr: 'https://findr-simontharby.herokuapp.com/',
     Dream_Flights: 'https://dream-flights-simontharby.herokuapp.com/',
@@ -135,10 +137,9 @@
     Members_Only: 'https://members-only-simontharby.herokuapp.com/',
     Blogger: 'https://blogger-simontharby.herokuapp.com/'
   };
-  const FRAME_DURATION = 1000;
-  const getTime = typeof performance === 'function' ? performance.now : Date.now;
-  let redirectInSecs = 0; // set to: 0
+  let lastPingAll = 0;
   let wakeDate = 0;
+  let redirectInSecs = 0;
   let lastUpdate = getTime();
 
   let content = document.getElementById('content');
@@ -156,7 +157,6 @@
     if (redirect.style.display == 'block') { cancelRedirect(); }
   });
   addClickToLinks(herokuApps);
-
   document.body.addEventListener('click', pingIfDue);
   document.body.addEventListener('mouseover', pingIfDue);
 
