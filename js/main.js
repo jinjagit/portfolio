@@ -28,7 +28,8 @@
   const pingApps = () => {
     const pingApp = (appKey) => {
       var p = new Ping();
-      console.log(`pinging: ${appKey} url: ${apps[appKey]}`); // DEBUG
+      //console.log(`pinging: ${appKey} url: ${apps[appKey]}`); // DEBUG
+      //console.log('pinging apps');
 
       p.ping(apps[appKey], function(err, data) {
         // console.log(`pinged ${apps[appKey]} in ${data} ms`); // DEBUG
@@ -83,7 +84,8 @@
     if (localStorage.getItem('scrollPosn')) {
       let scrollPosn = JSON.parse(localStorage.getItem('scrollPosn'));
       if (scrollPosn != undefined && scrollPosn > 0) {
-        window.scrollTo(0, scrollPosn);
+        let delay = isChrome? 500 : 0;
+        setTimeout(function() { window.scrollTo(0, scrollPosn); }, delay)
         localStorage.setItem('scrollPosn', JSON.stringify(0));
       }
     }
@@ -122,16 +124,6 @@
     }
   };
 
-  let content = document.getElementById('content');
-  let redirect = document.getElementById('redirect');
-
-  window.addEventListener("pageshow", function(event) { // from: https://stackoverflow.com/questions/43043113/how-to-force-reloading-a-page-when-using-browser-back-button
-    var historyTraversal = event.persisted ||
-                           (typeof window.performance != "undefined" &&
-                            window.performance.navigation.type === 2);
-    if (historyTraversal) { cancelRedirect(); }
-  });
-
   const FRAME_DURATION = 1000;
   const getTime = typeof performance === 'function' ? performance.now : Date.now;
 
@@ -146,7 +138,10 @@
   let wakeDate = 0;
   let redirectInSecs = 0;
   let lastUpdate = getTime();
+  let isChrome = navigator.userAgent.includes('Chrom'); // Chrome || Chromium
 
+  let content = document.getElementById('content');
+  let redirect = document.getElementById('redirect');
   let logo = document.getElementById('logo');
   let navToggle = document.getElementById('navToggle');
   let fixedNavLinks = document.getElementById('fixedNavLinks');
@@ -154,6 +149,20 @@
   let redirectTime = document.getElementById('redirectTime');
   let cancel = document.getElementById('cancel');
   let herokuApps = document.querySelectorAll('.heroku');
+
+  window.addEventListener("pageshow", function(event) { // from: https://stackoverflow.com/questions/43043113/how-to-force-reloading-a-page-when-using-browser-back-button
+    var historyTraversal = event.persisted ||
+                           (typeof window.performance != "undefined" &&
+                            window.performance.navigation.type === 2);
+    // Catch case: Firefox && navigate back here without page reload
+    if (historyTraversal && isChrome == false) {
+      redirect.style.display = 'none';
+      navToggle.style.display = 'block';
+      fixedNavLinks.style.display = 'block';
+      content.style.display = 'block';
+      if (storageAvailable('localStorage')) { restoreScrollPosn(); }
+    }
+  });
 
   cancel.addEventListener('click', cancelRedirect);
   logo.addEventListener('click', function() {
@@ -180,5 +189,7 @@
   }
 
   pingIfDue();
+
+  console.log('page loaded');
 
 })();
