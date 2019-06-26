@@ -10,8 +10,8 @@
 
     // RESET: set correct ping times and enable pings for PRODUCTION
 
-    if (pingDelta > 60) { // 900 secs == 15 mins / 1800 secs == 30 mins
-      if (pingDelta > 120) { // 1800
+    if (pingDelta > 900) { // 900 secs == 15 mins / 1800 secs == 30 mins
+      if (pingDelta > 1800) { // 1800
         wakeDate = Date.now();
         if (storageAvailable('localStorage')) {
           localStorage.setItem('wakeDate', JSON.stringify(wakeDate));
