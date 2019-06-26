@@ -8,8 +8,10 @@
   const pingIfDue = () => {
     let pingDelta = (Date.now() - lastPingAll) / 1000;
 
-    if (pingDelta > 900) { // 900 secs == 15 mins / 1800 secs == 30 mins
-      if (pingDelta > 1800) {
+    // RESET: set correct ping times and enable pings for PRODUCTION
+
+    if (pingDelta > 60) { // 900 secs == 15 mins / 1800 secs == 30 mins
+      if (pingDelta > 120) { // 1800
         wakeDate = Date.now();
         if (storageAvailable('localStorage')) {
           localStorage.setItem('wakeDate', JSON.stringify(wakeDate));
@@ -26,7 +28,7 @@
   const pingApps = () => {
     const pingApp = (appKey) => {
       var p = new Ping();
-      // console.log(`pinging: ${appKey} url: ${apps[appKey]}`); // DEBUG
+      console.log(`pinging: ${appKey} url: ${apps[appKey]}`); // DEBUG
 
       p.ping(apps[appKey], function(err, data) {
         // console.log(`pinged ${apps[appKey]} in ${data} ms`); // DEBUG
@@ -177,5 +179,7 @@
   }
 
   pingIfDue();
+
+  // window.scrollTo(0, 500);
 
 })();
