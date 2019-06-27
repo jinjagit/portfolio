@@ -10,15 +10,15 @@
 
     // RESET: set correct ping times and enable pings for PRODUCTION
 
-    if (pingDelta > 900) { // 900 secs == 15 mins / 1800 secs == 30 mins
-      if (pingDelta > 1800) { // 1800
+    if (pingDelta > 60) { // 900 secs == 15 mins / 1800 secs == 30 mins
+      if (pingDelta > 120) { // 1800
         wakeDate = Date.now();
-        if (storageAvailable('localStorage')) {
+        if (hasStorage) {
           localStorage.setItem('wakeDate', JSON.stringify(wakeDate));
         }
       }
       lastPingAll = Date.now();
-      if (storageAvailable('localStorage')) {
+      if (hasStorage) {
         localStorage.setItem('lastPingAll', JSON.stringify(lastPingAll));
       }
       pingApps();
@@ -29,7 +29,7 @@
     const pingApp = (appKey) => {
       var p = new Ping();
       //console.log(`pinging: ${appKey} url: ${apps[appKey]}`); // DEBUG
-      //console.log('pinging apps');
+      console.log('pinging apps');
 
       p.ping(apps[appKey], function(err, data) {
         // console.log(`pinged ${apps[appKey]} in ${data} ms`); // DEBUG
@@ -63,6 +63,8 @@
   };
 
   const showRedirect = (appKey) => {
+    storeScrollPosn();
+    storeScroll = false;
     content.style.display = 'none';
     navToggle.style.display = 'none';
     fixedNavLinks.style.display = 'none';
@@ -77,18 +79,17 @@
     navToggle.style.display = 'block';
     fixedNavLinks.style.display = 'block';
     content.style.display = 'block';
-    if (storageAvailable('localStorage')) { restoreScrollPosn(); }
+    if (hasStorage) { restoreScrollPosn(); }
   };
 
   const restoreScrollPosn = () => {
     if (localStorage.getItem('scrollPosn')) {
       let scrollPosn = JSON.parse(localStorage.getItem('scrollPosn'));
       if (scrollPosn != undefined && scrollPosn > 0) {
-        let delay = isChrome? 500 : 0;
-        setTimeout(function() { window.scrollTo(0, scrollPosn); }, delay)
-        localStorage.setItem('scrollPosn', JSON.stringify(0));
+        window.scrollTo(0, scrollPosn);
       }
     }
+    storeScroll = true;
   };
 
   const addClickToLinks = (herokuApps) => {
@@ -96,14 +97,18 @@
       herokuApps[i].addEventListener("click", function() {
         pingIfDue();
         if (((Date.now() - wakeDate) / 1000) < 30) {
-          if (storageAvailable('localStorage')) {
-            localStorage.setItem('scrollPosn', JSON.stringify(window.pageYOffset));
-          }
           showRedirect(this.classList[0]);
         } else {
+          storeScrollPosn();
           window.location.href = apps[this.classList[0]];
         }
       });
+    }
+  };
+
+  const storeScrollPosn = () => {
+    if (storeScroll) {
+      localStorage.setItem('scrollPosn', JSON.stringify(window.pageYOffset));
     }
   };
 
@@ -124,8 +129,12 @@
     }
   };
 
+  history.scrollRestoration = 'manual';
+
   const FRAME_DURATION = 1000;
   const getTime = typeof performance === 'function' ? performance.now : Date.now;
+  const hasStorage = storageAvailable('localStorage');
+  const isChrome = navigator.userAgent.includes('Chrom'); // Chrome || Chromium
 
   let apps = {
     Findr: 'https://findr-simontharby.herokuapp.com/',
@@ -138,7 +147,7 @@
   let wakeDate = 0;
   let redirectInSecs = 0;
   let lastUpdate = getTime();
-  let isChrome = navigator.userAgent.includes('Chrom'); // Chrome || Chromium
+  let storeScroll = hasStorage ? true: false;
 
   let content = document.getElementById('content');
   let redirect = document.getElementById('redirect');
@@ -156,11 +165,8 @@
                             window.performance.navigation.type === 2);
     // Catch case: Firefox && navigate back here without page reload
     if (historyTraversal && isChrome == false) {
-      redirect.style.display = 'none';
-      navToggle.style.display = 'block';
-      fixedNavLinks.style.display = 'block';
-      content.style.display = 'block';
-      if (storageAvailable('localStorage')) { restoreScrollPosn(); }
+      cancelRedirect();
+      pingIfDue();
     }
   });
 
@@ -172,7 +178,7 @@
   document.body.addEventListener('click', pingIfDue);
   document.body.addEventListener('mouseover', pingIfDue);
 
-  if (storageAvailable('localStorage')) {
+  if (hasStorage) {
     if (localStorage.getItem('lastPingAll')) {
       let lastPingStored = JSON.parse(localStorage.getItem('lastPingAll'));
       if (lastPingStored != undefined && lastPingStored < Date.now()) {
@@ -188,8 +194,13 @@
     restoreScrollPosn();
   }
 
-  pingIfDue();
+  if (hasStorage) {
+    (function storeScrollTick() {
+      storeScrollPosn();
+      setTimeout(storeScrollTick, 50);
+    })();
+  }
 
-  console.log('page loaded');
+  pingIfDue();
 
 })();
