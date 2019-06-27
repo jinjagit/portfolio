@@ -2,7 +2,8 @@
    minutes. Shows 'initializing server' view while server(s) start if any
    link to a Heroku app is clicked when servers probably asleep (30+ minutes
    between pings && less than 30 seconds after last pings), and then redirects
-   to clicked app link when server up (30 seconds after pings). */
+   to clicked app link when server up (30 seconds after pings). Also stores /
+   restores scroll position. */
 
 (() => {
   const pingIfDue = () => {
@@ -156,7 +157,7 @@
   let cancel = document.getElementById('cancel');
   let herokuApps = document.querySelectorAll('.heroku');
 
-  window.addEventListener("pageshow", function(event) { // from: https://stackoverflow.com/questions/43043113/how-to-force-reloading-a-page-when-using-browser-back-button
+  window.addEventListener("pageshow", function(event) { // adapted from: https://stackoverflow.com/questions/43043113/how-to-force-reloading-a-page-when-using-browser-back-button
     var historyTraversal = event.persisted ||
                            (typeof window.performance != "undefined" &&
                             window.performance.navigation.type === 2);
