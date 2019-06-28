@@ -9,7 +9,7 @@
   const pingIfDue = () => {
     let pingDelta = (Date.now() - lastPingAll) / 1000;
 
-    if (pingDelta > 90) { // 900 secs == 15 mins / 1800 secs == 30 mins
+    if (pingDelta > 900) { // 900 secs == 15 mins / 1800 secs == 30 mins
       if (pingDelta > 1800) {
         wakeDate = Date.now();
         if (hasStorage) {
