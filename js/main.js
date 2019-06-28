@@ -72,21 +72,25 @@
   };
 
   const cancelRedirect = () => {
-    clearInterval(redirectCountdown);
+    if (storeScroll == false) { clearInterval(redirectCountdown) };
     redirect.style.display = 'none';
+    content.style.display = 'hidden';
     navToggle.style.display = 'block';
     fixedNavLinks.style.display = 'block';
-    content.style.display = 'block';
-    if (hasStorage) { restoreScrollPosn(); }
+    restoreScrollPosn();
   };
 
   const restoreScrollPosn = () => {
-    if (localStorage.getItem('scrollPosn')) {
+    if (hasStorage && localStorage.getItem('scrollPosn')) {
       let scrollPosn = JSON.parse(localStorage.getItem('scrollPosn'));
       if (scrollPosn != undefined && scrollPosn > 0) {
         window.scrollTo(0, scrollPosn);
       }
     }
+    setTimeout(function() {
+      console.log('restored');
+      content.style.display = 'block';
+    }, 10);
     storeScroll = true;
   };
 
@@ -128,6 +132,8 @@
   };
 
   history.scrollRestoration = 'manual';
+  let content = document.getElementById('content');
+  content.style.display = 'hidden';
 
   const FRAME_DURATION = 1000;
   const getTime = typeof performance === 'function' ? performance.now : Date.now;
@@ -147,7 +153,6 @@
   let lastUpdate = getTime();
   let storeScroll = hasStorage ? true: false;
 
-  let content = document.getElementById('content');
   let redirect = document.getElementById('redirect');
   let logo = document.getElementById('logo');
   let navToggle = document.getElementById('navToggle');
@@ -158,6 +163,7 @@
   let herokuApps = document.querySelectorAll('.heroku');
 
   window.addEventListener("pageshow", function(event) { // adapted from: https://stackoverflow.com/questions/43043113/how-to-force-reloading-a-page-when-using-browser-back-button
+    content.style.display = 'hidden';
     var historyTraversal = event.persisted ||
                            (typeof window.performance != "undefined" &&
                             window.performance.navigation.type === 2);

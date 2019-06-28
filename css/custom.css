@@ -8,6 +8,10 @@
   --title-color: #e2e2e2;
 }
 
+#content {
+  display: hidden;
+}
+
 body {
   background-color: var(--body-bg-color);
   color: var(--para-color);
@@ -92,7 +96,7 @@ a:hover {
 }
 
 #content {
-  display: block;
+  display: hidden;
 }
 
 #redirect {
