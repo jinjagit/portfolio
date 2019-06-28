@@ -9,8 +9,8 @@
   const pingIfDue = () => {
     let pingDelta = (Date.now() - lastPingAll) / 1000;
 
-    if (pingDelta > 900) { // 900 secs == 15 mins / 1800 secs == 30 mins
-      if (pingDelta > 1800) {
+    if (pingDelta > 60) { // 900 secs == 15 mins / 1800 secs == 30 mins
+      if (pingDelta > 120) {
         wakeDate = Date.now();
         if (hasStorage) {
           localStorage.setItem('wakeDate', JSON.stringify(wakeDate));
@@ -27,11 +27,11 @@
   const pingApps = () => {
     const pingApp = (appKey) => {
       var p = new Ping();
-      //console.log(`pinging: ${appKey} url: ${apps[appKey]}`); // DEBUG
-
+      console.log(`pinging: ${appKey} url: ${apps[appKey]}`); // DEBUG
+/*
       p.ping(apps[appKey], function(err, data) {
         // console.log(`pinged ${apps[appKey]} in ${data} ms`); // DEBUG
-      });
+      });*/
     };
 
     for (var key in apps) { pingApp(key); }
@@ -74,7 +74,8 @@
   const cancelRedirect = () => {
     if (storeScroll == false) { clearInterval(redirectCountdown) };
     redirect.style.display = 'none';
-    content.style.display = 'hidden';
+    overlay.style.zIndex = '999';
+    content.style.display = 'block';
     navToggle.style.display = 'block';
     fixedNavLinks.style.display = 'block';
     restoreScrollPosn();
@@ -87,10 +88,7 @@
         window.scrollTo(0, scrollPosn);
       }
     }
-    setTimeout(function() {
-      console.log('restored');
-      content.style.display = 'block';
-    }, 10);
+    overlay.style.zIndex = '-1';
     storeScroll = true;
   };
 
@@ -132,8 +130,6 @@
   };
 
   history.scrollRestoration = 'manual';
-  let content = document.getElementById('content');
-  content.style.display = 'hidden';
 
   const FRAME_DURATION = 1000;
   const getTime = typeof performance === 'function' ? performance.now : Date.now;
@@ -153,6 +149,8 @@
   let lastUpdate = getTime();
   let storeScroll = hasStorage ? true: false;
 
+  let content = document.getElementById('content');
+  let overlay = document.getElementById('overlay');
   let redirect = document.getElementById('redirect');
   let logo = document.getElementById('logo');
   let navToggle = document.getElementById('navToggle');
@@ -163,11 +161,10 @@
   let herokuApps = document.querySelectorAll('.heroku');
 
   window.addEventListener("pageshow", function(event) { // adapted from: https://stackoverflow.com/questions/43043113/how-to-force-reloading-a-page-when-using-browser-back-button
-    content.style.display = 'hidden';
     var historyTraversal = event.persisted ||
                            (typeof window.performance != "undefined" &&
                             window.performance.navigation.type === 2);
-    // Catch case: Firefox && navigate back here without page reload
+    // Catch case: not Chrome && navigate back here without page reload
     if (historyTraversal && isChrome == false) {
       cancelRedirect();
       pingIfDue();
@@ -204,6 +201,10 @@
       setTimeout(storeScrollTick, 50);
     })();
   }
+
+
+  overlay.style.zIndex = '-1';
+
 
   pingIfDue();
 
