@@ -227,4 +227,6 @@
   let pos = document.body.scrollTop;
   alert(`Scroll: ${window.pageYOffset}\nscrolPosn: ${JSON.parse(localStorage.getItem('scrollPosn'))}\n posn of DT: ${rect.top}`);
 */
+
+alert(hasStorage);
 })();
