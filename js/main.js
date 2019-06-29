@@ -210,10 +210,13 @@
     })();
   }
 
-
   overlay.style.zIndex = '-1';
 
-
   pingIfDue();
+
+  //window.scrollTo(0,300);
+  var rect = document.getElementById('timer').getBoundingClientRect();
+  let pos = document.body.scrollTop;
+  alert(`Scroll: ${window.pageYOffset}\nscrolPosn: ${JSON.parse(localStorage.getItem('scrollPosn'))}\n posn of DT: ${rect.top}`);
 
 })();
