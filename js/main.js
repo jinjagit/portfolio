@@ -12,8 +12,8 @@
   const pingIfDue = () => {
     let pingDelta = (Date.now() - lastPingAll) / 1000;
 
-    if (pingDelta > 60) { // 900 secs == 15 mins / 1800 secs == 30 mins
-      if (pingDelta > 120) {
+    if (pingDelta > 900) { // 900 secs == 15 mins / 1800 secs == 30 mins
+      if (pingDelta > 1800) {
         wakeDate = Date.now();
         if (hasStorage) {
           localStorage.setItem('wakeDate', JSON.stringify(wakeDate));
@@ -30,11 +30,11 @@
   const pingApps = () => {
     const pingApp = (appKey) => {
       var p = new Ping();
-      console.log(`pinging: ${appKey} url: ${apps[appKey]}`); // DEBUG
-/*
+      //console.log(`pinging: ${appKey} url: ${apps[appKey]}`); // DEBUG
+
       p.ping(apps[appKey], function(err, data) {
         // console.log(`pinged ${apps[appKey]} in ${data} ms`); // DEBUG
-      });*/
+      });
     };
 
     for (var key in apps) { pingApp(key); }
@@ -65,7 +65,7 @@
 
   const showRedirect = (appKey) => {
     storeScrollPosn();
-    storeScroll = false;
+    redirecting = true;
     content.style.display = 'none';
     navToggle.style.display = 'none';
     fixedNavLinks.style.display = 'none';
@@ -75,7 +75,7 @@
   };
 
   const cancelRedirect = () => {
-    if (storeScroll == false) { clearInterval(redirectCountdown) };
+    if (redirecting == true) { clearInterval(redirectCountdown) };
     redirect.style.display = 'none';
     overlay.style.zIndex = '999';
     content.style.display = 'block';
@@ -96,7 +96,7 @@
     } else {
       overlay.style.zIndex = '-1';
     }
-    storeScroll = true;
+    redirecting = false;
   };
 
   const addClickToLinks = (herokuApps) => {
@@ -114,7 +114,7 @@
   };
 
   const storeScrollPosn = () => {
-    if (storeScroll) {
+    if (redirecting == false) {
       localStorage.setItem('scrollPosn', JSON.stringify(window.pageYOffset));
     }
   };
@@ -161,7 +161,7 @@
   let wakeDate = 0;
   let redirectInSecs = 0;
   let lastUpdate = getTime();
-  let storeScroll = hasStorage ? true: false;
+  let redirecting = false;
 
   let content = document.getElementById('content');
   let overlay = document.getElementById('overlay');
