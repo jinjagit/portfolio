@@ -1,16 +1,19 @@
-/* Pings Heroku apps on any mouseover or click if apps not pinged in last 15
+/* 1. Pings Heroku apps on any mouseover or click if apps not pinged in last 15
    minutes. Shows 'initializing server' view while server(s) start if any
    link to a Heroku app is clicked when servers probably asleep (30+ minutes
    between pings && less than 30 seconds after last pings), and then redirects
-   to clicked app link when server up (30 seconds after pings). Also stores /
-   restores scroll position. */
+   to clicked app link when server up (30 seconds after pings).
+
+   2. Stores / restores scroll position.
+
+   3. Hides element outlines, except when 'tab' key used (accessibility) */
 
 (() => {
   const pingIfDue = () => {
     let pingDelta = (Date.now() - lastPingAll) / 1000;
 
-    if (pingDelta > 900) { // 900 secs == 15 mins / 1800 secs == 30 mins
-      if (pingDelta > 1800) {
+    if (pingDelta > 60) { // 900 secs == 15 mins / 1800 secs == 30 mins
+      if (pingDelta > 120) {
         wakeDate = Date.now();
         if (hasStorage) {
           localStorage.setItem('wakeDate', JSON.stringify(wakeDate));
@@ -27,11 +30,11 @@
   const pingApps = () => {
     const pingApp = (appKey) => {
       var p = new Ping();
-      // console.log(`pinging: ${appKey} url: ${apps[appKey]}`); // DEBUG
-
+      console.log(`pinging: ${appKey} url: ${apps[appKey]}`); // DEBUG
+/*
       p.ping(apps[appKey], function(err, data) {
         // console.log(`pinged ${apps[appKey]} in ${data} ms`); // DEBUG
-      });
+      });*/
     };
 
     for (var key in apps) { pingApp(key); }
@@ -85,15 +88,10 @@
     if (hasStorage && localStorage.getItem('scrollPosn')) {
       let scrollPosn = JSON.parse(localStorage.getItem('scrollPosn'));
       if (scrollPosn != undefined) {
-        setTimeout(function(){
-          window.scrollTo(0, scrollPosn);
-          overlay.style.zIndex = '-1';
-        }, 0);
-        //window.scrollTo(0, scrollPosn);
+        window.scrollTo(0, scrollPosn);
       }
-    } else {
-      overlay.style.zIndex = '-1';
     }
+    overlay.style.zIndex = '-1';
     storeScroll = true;
   };
 
@@ -193,6 +191,7 @@
   window.addEventListener('keydown', handleFirstTab);
 
   if (hasStorage) {
+    document.addEventListener("scroll", storeScrollPosn);
     if (localStorage.getItem('lastPingAll')) {
       let lastPingStored = JSON.parse(localStorage.getItem('lastPingAll'));
       if (lastPingStored != undefined && lastPingStored < Date.now()) {
@@ -209,35 +208,7 @@
   } else {
     overlay.style.zIndex = '-1';
   }
-/*
-  if (hasStorage) {
-    (function storeScrollTick() {
-      storeScrollPosn();
-      setTimeout(storeScrollTick, 50);
-    })();
-  }*/
-
-  if (hasStorage) { document.addEventListener("scroll", storeScrollPosn); }
 
   pingIfDue();
 
-//content.ontouchstart = function () {console.log('bbb')};
-
-//content.ontouchend = function () {console.log('ccc')};
-
-/*
- function myScript() {
-
-   console.log('ddd');
- }
-document.addEventListener("scroll", myScript);
-*/
-  //window.scrollTo(0,300);
-  /*
-  var rect = document.getElementById('timer').getBoundingClientRect();
-  let pos = document.body.scrollTop;
-  alert(`Scroll: ${window.pageYOffset}\nscrolPosn: ${JSON.parse(localStorage.getItem('scrollPosn'))}\n posn of DT: ${rect.top}`);
-*/
-
-//alert(hasStorage);
 })();
