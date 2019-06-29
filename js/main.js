@@ -85,10 +85,15 @@
     if (hasStorage && localStorage.getItem('scrollPosn')) {
       let scrollPosn = JSON.parse(localStorage.getItem('scrollPosn'));
       if (scrollPosn != undefined && scrollPosn > 0) {
-        window.scrollTo(0, scrollPosn);
+        setTimeout(function(){
+          window.scrollTo(0, scrollPosn);
+          overlay.style.zIndex = '-1';
+        }, 500);
+        //window.scrollTo(0, scrollPosn);
       }
+    } else {
+      overlay.style.zIndex = '-1';
     }
-    overlay.style.zIndex = '-1';
     storeScroll = true;
   };
 
@@ -201,6 +206,8 @@
       }
     }
     restoreScrollPosn();
+  } else {
+    overlay.style.zIndex = '-1';
   }
 
   if (hasStorage) {
@@ -210,15 +217,14 @@
     })();
   }
 
-  overlay.style.zIndex = '-1';
-
   pingIfDue();
 
-  content.ontouchstart = function () {};
+
 
   //window.scrollTo(0,300);
+  /*
   var rect = document.getElementById('timer').getBoundingClientRect();
   let pos = document.body.scrollTop;
   alert(`Scroll: ${window.pageYOffset}\nscrolPosn: ${JSON.parse(localStorage.getItem('scrollPosn'))}\n posn of DT: ${rect.top}`);
-
+*/
 })();
