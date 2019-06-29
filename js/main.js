@@ -129,6 +129,13 @@
     }
   };
 
+  function handleFirstTab(e) { from: https://hackernoon.com/removing-that-ugly-focus-ring-and-keeping-it-too-6c8727fefcd2
+    if (e.keyCode === 9) { // the "I am a keyboard user" key
+        document.body.classList.add('user-is-tabbing');
+        window.removeEventListener('keydown', handleFirstTab);
+    }
+  }
+
   history.scrollRestoration = 'manual';
 
   const FRAME_DURATION = 1000;
@@ -178,6 +185,7 @@
   addClickToLinks(herokuApps);
   document.body.addEventListener('click', pingIfDue);
   document.body.addEventListener('mouseover', pingIfDue);
+  window.addEventListener('keydown', handleFirstTab);
 
   if (hasStorage) {
     if (localStorage.getItem('lastPingAll')) {

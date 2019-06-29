@@ -99,10 +99,6 @@ a:hover {
   border-style: none;
 }
 
-.navbar-toggler:focus, .navbar-toggler:active {
-  outline: none;
-}
-
 .nav-spacer {
   height: 100px;
 }
@@ -251,4 +247,12 @@ a:hover {
 @keyframes loaderSprite {
   from { background-position: 0px; }
   to { background-position: -2000px; }
+}
+
+body:not(.user-is-tabbing) button:focus,
+body:not(.user-is-tabbing) input:focus,
+body:not(.user-is-tabbing) select:focus,
+body:not(.user-is-tabbing) textarea:focus,
+body:not(.user-is-tabbing) a:focus {
+  outline: none;
 }
