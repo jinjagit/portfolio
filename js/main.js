@@ -91,7 +91,7 @@
         setTimeout(function(){
           window.scrollTo(0, scrollPosn);
           overlay.style.zIndex = '-1';
-        }, 10);
+        }, 100);
       }
     } else {
       overlay.style.zIndex = '-1';
