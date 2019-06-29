@@ -214,6 +214,8 @@
 
   pingIfDue();
 
+  content.ontouchstart = function () {};
+
   //window.scrollTo(0,300);
   var rect = document.getElementById('timer').getBoundingClientRect();
   let pos = document.body.scrollTop;
