@@ -88,10 +88,14 @@
     if (hasStorage && localStorage.getItem('scrollPosn')) {
       let scrollPosn = JSON.parse(localStorage.getItem('scrollPosn'));
       if (scrollPosn != undefined) {
-        window.scrollTo(0, scrollPosn);
+        setTimeout(function(){
+          window.scrollTo(0, scrollPosn);
+          overlay.style.zIndex = '-1';
+        }, 100);
       }
+    } else {
+      overlay.style.zIndex = '-1';
     }
-    overlay.style.zIndex = '-1';
     storeScroll = true;
   };
 
