@@ -84,11 +84,11 @@
   const restoreScrollPosn = () => {
     if (hasStorage && localStorage.getItem('scrollPosn')) {
       let scrollPosn = JSON.parse(localStorage.getItem('scrollPosn'));
-      if (scrollPosn != undefined && scrollPosn > 0) {
+      if (scrollPosn != undefined) {
         setTimeout(function(){
           window.scrollTo(0, scrollPosn);
           overlay.style.zIndex = '-1';
-        }, 500);
+        }, 0);
         //window.scrollTo(0, scrollPosn);
       }
     } else {
@@ -209,18 +209,29 @@
   } else {
     overlay.style.zIndex = '-1';
   }
-
+/*
   if (hasStorage) {
     (function storeScrollTick() {
       storeScrollPosn();
       setTimeout(storeScrollTick, 50);
     })();
-  }
+  }*/
+
+  if (hasStorage) { document.addEventListener("scroll", storeScrollPosn); }
 
   pingIfDue();
 
+//content.ontouchstart = function () {console.log('bbb')};
 
+//content.ontouchend = function () {console.log('ccc')};
 
+/*
+ function myScript() {
+
+   console.log('ddd');
+ }
+document.addEventListener("scroll", myScript);
+*/
   //window.scrollTo(0,300);
   /*
   var rect = document.getElementById('timer').getBoundingClientRect();
@@ -228,5 +239,5 @@
   alert(`Scroll: ${window.pageYOffset}\nscrolPosn: ${JSON.parse(localStorage.getItem('scrollPosn'))}\n posn of DT: ${rect.top}`);
 */
 
-alert(hasStorage);
+//alert(hasStorage);
 })();
