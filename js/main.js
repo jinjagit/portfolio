@@ -103,7 +103,7 @@
     for (let i = 0; i < herokuApps.length; i++) {
       herokuApps[i].addEventListener("click", function() {
         pingIfDue();
-        if (((Date.now() - wakeDate) / 1000) < 30) {
+        if (((Date.now() - wakeDate) / 1000) < 30) { // ?change 30 to 60 to fix bug?? (probably not!)
           showRedirect(this.classList[0]);
         } else {
           storeScrollPosn();
@@ -180,8 +180,10 @@
                             window.performance.navigation.type === 2);
     // Catch case: not Chrome && navigate back here without page reload
     if (historyTraversal && isChrome == false) {
-      cancelRedirect();
-      pingIfDue();
+      if ((hasStorage && Date.now() > (lastPingAll + 30000)) || (hasStorage == false)) {
+        cancelRedirect();
+        pingIfDue();
+      }
     }
   });
 
