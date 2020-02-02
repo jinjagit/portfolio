@@ -256,3 +256,9 @@ body:not(.user-is-tabbing) textarea:focus,
 body:not(.user-is-tabbing) a:focus {
   outline: none;
 }
+
+#test {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+}
