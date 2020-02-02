@@ -20,7 +20,7 @@ My profile, portfolio and contact details, @ [simontharby.com](https://simonthar
 ## Portfolio items
 
 The basic DOM of a (non-heroku) portfolio item, created by main js:
-`
+```
 <div class="d-block d-md-none" style="height:30px;"></div>
 <h2 class="d-block d-md-none" style="text-align:center;">To-do</h2>
 <div class="row">
@@ -66,10 +66,10 @@ The basic DOM of a (non-heroku) portfolio item, created by main js:
     </div>
   </div>
 </div>
-`
+```
 
 Contrast with the DOM for a heroku portfolio item. Note the `javascript:;` hyperlinks and extra class tags:
-`
+```
 <div class="d-block d-md-none" style="height:30px;"></div>
 <h2 class="d-block d-md-none" style="text-align:center;">Findr</h2>
 <div class="row">
@@ -115,7 +115,7 @@ Contrast with the DOM for a heroku portfolio item. Note the `javascript:;` hyper
     </div>
   </div>
 </div>
-`
+```
 
 ## Images
 
