@@ -119,4 +119,4 @@ Contrast with the DOM for a heroku portfolio item. Note the `javascript:;` hyper
 
 ## Images
 
-Each portfolio item needs 3 jpeg images, 800x800px, progressive, named; <tag>#.jpg, (# == 1, 2, & 3)
+Each portfolio item needs 3 jpeg images, 800x800px, progressive, named; \<tag\>#.jpg, (# == 1, 2, & 3)
