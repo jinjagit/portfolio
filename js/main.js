@@ -159,8 +159,13 @@
       let aB = document.createElement("a");
       divBbBA.appendChild(aB);
       let imgA = document.createElement("img");
-      imgA.src = "img/website-btn.png";
-      imgA.alt = "website-btn.png";
+      if (items[i].video == true) {
+        imgA.src = "img/video-btn.png";
+        imgA.alt = "video-btn.png";
+      } else {
+        imgA.src = "img/website-btn.png";
+        imgA.alt = "website-btn.png";
+      }
       aB.appendChild(imgA);
       let divBbBB = document.createElement("div");
       divBbBB.classList.add("col-md-6", "mb-2");
