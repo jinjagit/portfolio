@@ -8,22 +8,6 @@
   --title-color: #e2e2e2;
 }
 
-#overlay {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  top:0;
-  right:0;
-  z-index: 999;
-  background-color: var(--body-bg-color);
-  display: block;
-}
-
-#content {
-  z-index: 0;
-  display: block;
-}
-
 body {
   background-color: var(--body-bg-color);
   color: var(--para-color);
@@ -43,6 +27,7 @@ hr {
 img {
   display: block;
   margin: auto;
+  border-radius: 7px;
 }
 
 h1 {
@@ -53,6 +38,10 @@ h2, h3 {
   color: var(--secondary-color);
 }
 
+h5 {
+  line-height: 26px;
+}
+
 a {
   color: var(--primary-color);
   text-decoration: none;
@@ -61,54 +50,6 @@ a {
 a:hover {
   color: var(--secondary-color);
   text-decoration: none;
-}
-
-.navbar {
-  background-color: var(--nav-bg-color);
-  background-image: none;
-  background-repeat: no-repeat;
-  border-style: solid;
-  border-width: 0px 0px 1px 0px;
-  border-color: var(--primary-color);
- }
-
- #logo {
-   color: var(--title-color);
- }
-
- .fixed-nav-link {
-   display: inline;
-   color: var(--para-color);
- }
-
- .fixed-nav-link:hover {
-   color: var(--title-color);
- }
-
-.navbar-toggler-icon {
-  background-image: url("../img/toggle-icon.svg") !important;
-  border-style: none;
-  margin-right: -20px;
-}
-
-.navbar-toggler-icon:hover {
-  background-image: url("../img/toggle-icon-hover.svg") !important;
-}
-
-.navbar-toggler {
-  border-style: none;
-}
-
-.nav-spacer {
-  height: 100px;
-}
-
-#content {
-  display: hidden;
-}
-
-#redirect {
-  display: none;
 }
 
 .small-heading {
@@ -147,10 +88,6 @@ a:hover {
   background-color: var(--secondary-color);
 }
 
-#iconLinkedin {
-  /* no styling, as yet */
-}
-
 #iconGithub {
   margin-left: 17px;
 }
@@ -166,99 +103,10 @@ a:hover {
   background-color: var(--secondary-color);
 }
 
-.footerText {
-  text-align: right;
-}
-
-.carousel-inner img {
-  width: 100%;
-  height: 100%;
-}
-
-.carousel-fade .carousel-item {
-  opacity: 0;
-  transition-duration: .6s;
-  transition-property: opacity;
-}
-
-.carousel-fade .carousel-item.active,
-.carousel-fade .carousel-item-next.carousel-item-left,
-.carousel-fade .carousel-item-prev.carousel-item-right {
-  opacity: 1;
-}
-
-.carousel-fade .active.carousel-item-left,
-.carousel-fade .active.carousel-item-right {
-  opacity: 0;
-}
-
-.carousel-fade .carousel-item-next,
-.carousel-fade .carousel-item-prev,
-.carousel-fade .carousel-item.active,
-.carousel-fade .active.carousel-item-left,
-.carousel-fade .active.carousel-item-prev {
-  transform: translateX(0);
-  transform: translate3d(0, 0, 0);
-}
-
-.centerBox {
-  display: block;
-  top:50%;
-  left: 50%;
-  transform: translate3d(-50%,-50%, 0);
-  position: absolute;
-}
-
-.loader {
-  display: block;
-  width: 100px;
-  height: 100px;
-  margin: auto;
-  background-image: url("../img/load-sprites.png");
-  -webkit-animation: loaderSprite 1s steps(20, end) infinite;
-  -moz-animation: loaderSprite 1s steps(20, end) infinite;
-  animation: loaderSprite 1s steps(20, end) infinite;
-}
-
-#cancel {
-  display: block;
-  margin: auto;
-  background-color: var(--para-color);
-  border-style: none;
-  border-radius: 5px;
-}
-
-#cancel:hover {
-  background-color: var(--title-color);
-}
-
-/* adapted from: http://padolsey.github.io/sonic-creator/#pink */
-
-@-webkit-keyframes loaderSprite {
-  from { background-position: 0px; } to
-  { background-position: -2000px; }
-}
-
-@-moz-keyframes loaderSprite {
-  from { background-position: 0px; }
-  to { background-position: -2000px; }
-}
-
-@keyframes loaderSprite {
-  from { background-position: 0px; }
-  to { background-position: -2000px; }
-}
-
 body:not(.user-is-tabbing) button:focus,
 body:not(.user-is-tabbing) input:focus,
 body:not(.user-is-tabbing) select:focus,
 body:not(.user-is-tabbing) textarea:focus,
 body:not(.user-is-tabbing) a:focus {
   outline: none;
-}
-
-#test {
-  width: 100px;
-  height: 100px;
-  background-color: red;
 }

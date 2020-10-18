@@ -1,6 +1,5 @@
 <!doctype html>
 <html xmlns:og="http://ogp.me/ns#">
-
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -21,161 +20,68 @@
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/custom.css">
   </head>
-
   <body>
-    <!--Navbar-->
-    <nav class="navbar fixed-top navbar-dark navbar-1 white">
-      <div class="container">
-        <!-- Navbar brand -->
-        <a id="logo" class="navbar-brand" href="#profile">Simon Tharby</a>
-        <!-- Fixed Links -->
-        <div class="d-none d-md-block">
-          <div id="fixedNavLinks">
-              <a class="nav-link fixed-nav-link" href="#profile">Profile</a>
-              <a class="nav-link fixed-nav-link" href="#portfolio">Portfolio</a>
-              <a class="nav-link fixed-nav-link" href="#blog">Blog</a>
-              <a class="nav-link fixed-nav-link" href="#contact">Contact</a>
-          </div>
-        </div>
-        <!-- Collapse button -->
-        <div class="d-block d-md-none">
-          <button id="navToggle" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent15"
-            aria-controls="navbarSupportedContent15" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-        </div>
-        <!-- Collapsible content -->
-        <div class="collapse navbar-collapse" id="navbarSupportedContent15">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" href="#profile">Profile</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" href="#portfolio">Portfolio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" href="#blog">Blog</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="collapse" data-target=".navbar-collapse.show" href="#contact">Contact</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
     <main role="main" class="container">
-      <div id="content">
-        <div id="profile"></div>
-        <div class="nav-spacer"></div>
+      <!-- profile -->
+      <h5 class="d-block d-md-none"><br></h5>
+      <h1 class="d-block d-md-none" style="text-align:center;">Simon Tharby</h1>
+      <h3 class="d-block d-md-none" style="text-align:center;">Web Developer / Programmer</h3><br><br>
 
-        <!-- profile -->
-        <h1 class="d-block d-md-none" style="text-align:center;">Simon Tharby</h1>
-        <h3 class="d-block d-md-none" style="text-align:center;">Web Developer</h3><br><br>
+      <div class="row">
+        <div class="col-md-3 mb-4">
+          <a href="https://liquidvoting.io/"><img class="img-fluid" style="float:left;margin-bottom:20px;" src="img/logowithtext.png" alt="lvlogo"></a>
+          <BR CLEAR="right">
+          <p class="small-heading">Location:</p>
+          <p style="width:90%;margin-top:-10px;">Devon, UK</p>
+          <p class="small-heading" style="margin-top:10px;">Key competencies:</p>
+          <p style="width:90%;margin-top:-10px;">Elixir, Ruby, JavaScript, Rust, Python, C# / Phoenix, Rails / SQL, CSS, HTML, Bootstrap</p>
+          <p class="small-heading">Skills:</p>
+          <p style="width:90%;margin-top:-10px;">Web development, programming, communication, teamwork</p>
+          <p class="small-heading">Languages:</p>
+          <p class="d-block d-md-none" style="width:90%;margin-top:-10px;">English (native), Portuguese (advanced)</p>
+          <p class="d-none d-md-block" style="width:90%;margin-top:-10px;">English (native)</p>
+          <p class="d-none d-md-block" style="width:90%;;margin-top:-15px;">Portuguese (advanced)</p>
+        </div>
 
-        <div class="row">
-          <div class="col-md-3 mb-4">
-            <img class="img-fluid" style="float:left;margin-bottom:20px;" src="img/me.jpg" alt="me">
-            <BR CLEAR="right">
-            <p class="small-heading">Location:</p>
-            <p style="width:90%;margin-top:-10px;">Devon, UK</p>
-            <p class="small-heading" style="margin-top:10px;">Key competencies:</p>
-            <p style="width:90%;margin-top:-10px;">Ruby, JavaScript, Python, C# / Rails / SQL, CSS, HTML, Bootstrap</p>
-            <p class="small-heading">Skills:</p>
-            <p style="width:90%;margin-top:-10px;">Programming, communication, teamwork, editing, design, project-development</p>
-            <p class="small-heading">Languages:</p>
-            <p class="d-block d-md-none" style="width:90%;margin-top:-10px;">English (native), Portuguese (advanced)</p>
-            <p class="d-none d-md-block" style="width:90%;margin-top:-10px;">English (native)</p>
-            <p class="d-none d-md-block" style="width:90%;;margin-top:-15px;">Portuguese (advanced)</p>
-          </div>
-
-          <div class="col-md-9 mb-4">
-            <h1 class="d-none d-md-block" style="text-align:center;">Simon Tharby</h1>
-            <h3 class="d-none d-md-block" style="text-align:center;">Web Developer</h3>
-            <div class="d-none d-md-block" style="height:50px;"></div>
-            <h5 class="d-none d-md-block" style="margin-left:5%;">I like to make things that work well.</h5>
-            <div class="d-none d-md-block" style="height:15px;"></div>
-            <h5 class="d-none d-md-block" style="margin-left:5%;">I have a good understanding of web applications, from the front-end to the back-end. I am always keen to learn new languages, frameworks, and ways of doing things, and I believe that such learning should be a continuous and rewarding process.</h5>
-            <div class="d-none d-md-block" style="height:15px;"></div>
-            <h5 class="d-none d-md-block" style="margin-left:5%;">In addition to my coding knowledge and abilities, I have also developed excellent communication skills and a deep awareness of the essential elements of effective teamwork.</h5>
-            <div class="d-none d-md-block" style="height:15px;"></div>
-            <h5 class="d-none d-md-block" style="margin-left:5%;">I am based in the UK and currently contributing to the <a href="https://liquidvoting.io/">liquidvoting.io</a> OSS project.</h5>
-            <h5 class="d-block d-md-none">I like to make things that work well.</h5><br>
-            <h5 class="d-block d-md-none">I have a good understanding of web applications, from the front-end to the back-end. I am always keen to learn new languages, frameworks, and ways of doing things, and I believe that such learning should be a continuous and rewarding process.</h5><br>
-            <h5 class="d-block d-md-none">In addition to my coding knowledge and abilities, I have also developed excellent communication skills and a deep awareness of the essential elements of effective teamwork.</h5><br>
-            <h5 class="d-block d-md-none">I am based in the UK and currently contributing to the <a href="https://liquidvoting.io/">liquidvoting.io</a> OSS project.</h5><br class="d-block d-md-none">
-            <div style="width:100%;height:50px;">
-              <div style="display:block;margin:auto;width:220px">
-                <a href="https://www.linkedin.com/in/simontharby/">
-                  <img id="iconLinkedin" class="icon" title="LinkedIn" src="img/linkedin-icon.png" alt="linkedin">
-                </a>
-                <a href="mailto: simontharby@gmail.com">
-                  <img id="emailBtn" title="email" src="img/email-btn.png" alt="email">
-                </a>
-                <a href="https://github.com/jinjagit">
-                  <img id="iconGithub" class="icon" title="GitHub" src="img/github-icon.png" alt="github">
-                </a>
-                <div id="portfolio"></div>
-              </div>
+        <div class="col-md-9 mb-4">
+          <h1 class="d-none d-md-block" style="text-align:center;">Simon Tharby</h1>
+          <h3 class="d-none d-md-block" style="text-align:center;">Web Developer / Programmer</h3>
+          <div class="d-none d-md-block" style="height:50px;"></div>
+          <h5 class="d-none d-md-block" style="margin-left:5%;">I like to make things that work well.</h5>
+          <div class="d-none d-md-block" style="height:15px;"></div>
+          <h5 class="d-none d-md-block" style="margin-left:5%;">I have a good understanding of web applications, from the front to the back-end. Always keen to learn new languages, frameworks, and ways of doing things, I believe that such learning should be a continuous and rewarding process.</h5>
+          <div class="d-none d-md-block" style="height:15px;"></div>
+          <h5 class="d-none d-md-block" style="margin-left:5%;">Currently, I spend most of my time working on the <a href="https://liquidvoting.io/">liquidvoting.io</a> OSS project, an Elixir based liquid-democracy API. Most of <a href="https://github.com/jinjagit?org=liquidvotingio&year_list=1">my contributions</a> are visible on GitHub.</h5>
+          <div class="d-none d-md-block" style="height:15px;"></div>
+          <h5 class="d-none d-md-block" style="margin-left:5%;">In my spare time, I enjoy exploring various programming languages, with a special interest in Rust at the moment.</h5>
+          <div class="d-none d-md-block" style="height:15px;"></div>
+          <h5 class="d-none d-md-block" style="margin-left:5%;">Open to contract and full-time or part-time positions. Please connect with me on Linkedin, or via email, to discuss potential work.</h5>
+          <h5 class="d-block d-md-none">I like to make things that work well.<br></h5>
+          <h5 class="d-block d-md-none">I have a good understanding of web applications, from the front to the back-end. Always keen to learn new languages, frameworks, and ways of doing things, I believe that such learning should be a continuous and rewarding process.<br></h5>
+          <h5 class="d-block d-md-none">Currently, I spend most of my time working on the <a href="https://liquidvoting.io/">liquidvoting.io</a> OSS project, an Elixir based liquid-democracy API. Most of <a href="https://github.com/jinjagit?org=liquidvotingio&year_list=1">my contributions</a> are visible on GitHub.<br></h5>
+          <h5 class="d-block d-md-none">In my spare time, I enjoy exploring various programming languages, with a special interest in Rust at the moment.<br></h5>
+          <h5 class="d-block d-md-none">Open to contract and full-time or part-time positions. Please connect with me on Linkedin, or via email, to discuss potential work.</h5><br><br>
+          <div style="width:100%;height:50px;">
+            <div style="display:block;margin:auto;width:220px">
+              <a href="https://www.linkedin.com/in/simontharby/">
+                <img id="iconLinkedin" class="icon" title="LinkedIn" src="img/linkedin-icon.png" alt="linkedin">
+              </a>
+              <a href="mailto: simontharby@gmail.com">
+                <img id="emailBtn" title="email" src="img/email-btn.png" alt="email">
+              </a>
+              <a href="https://github.com/jinjagit">
+                <img id="iconGithub" class="icon" title="GitHub" src="img/github-icon.png" alt="github">
+              </a>
             </div>
+            <br><br>
+            <hr></hr>
+          <!-- blog -->
+          <h5 class="d-none d-md-block" style="margin-left:5%;">Blog post - published in 'Better Programming': <a href="https://medium.com/better-programming/javascript-a-review-of-functions-37ed492eab45">JavaScript: A Review of Functions</a></h5>
+          <h5 class="d-block d-md-none">Blog post - published in 'Better Programming': <a href="https://medium.com/better-programming/javascript-a-review-of-functions-37ed492eab45">JavaScript: A Review of Functions</a></h5><br>
           </div>
         </div>
-
-        <hr></hr>
-
-        <!-- portfolio -->
-        <br><h1 style="text-align:center;">Portfolio</h1><br>
-
-        <div id="portfolio-items"></div>
-
-        <div id="blog"></div>
-        <hr></hr>
-
-        <!-- blog -->
-        <br><h1 style="text-align:center;">Blog</h1><br>
-        <h5>I have written one blog post related to web development, which was published in 'Better Programming'. I plan to write more soon.</h5>
-        <br><h4 style="text-align:center;"><a href="https://medium.com/better-programming/javascript-a-review-of-functions-37ed492eab45">JavaScript: A Review of Functions</a></h4><br>
-
-        <div id="contact"></div>
-        <hr></hr>
-
-        <!-- contact -->
-        <br><h1 style="text-align:center;">Contact</h1><br>
-        <div style="width:100%;">
-          <div style="width:200px;margin:auto;">
-            <a href="mailto: simontharby@gmail.com">
-              <img class="butn" src="img/email-btn.png" alt="email">
-            </a>
-          </div>
-        </div>
-        <div style="height:30px;"></div>
-        <h4 style="text-align:center;">Please email me:</h4>
-        <h4 style="text-align:center;"><a href="mailto: simontharby@gmail.com">simontharby@gmail.com</a></h4><br>
-
-        <hr></hr>
-        <p class="footerText">&copy; Simon Tharby, 2020</p>
-      </div>
-
-      <div id="redirect">
-        <div class="centerBox">
-          <h2 style="text-align:center;">Server Initializing</h2><br>
-          <div class="loader"></div><br>
-          <h5 style="display:inline;">Redirecting to the </h5>
-          <h5 id="redirectText" class="highlight" style="display:inline;"> (name-of-app)</h5>
-          <h5 style="display:inline;"> app in:</h5>
-          <div style="text-align:center;">
-            <h2 id="redirectTime" style="display:inline;"></h2>
-            <h5 style="display:inline;"> seconds</h5>
-          </div><br><br>
-          <button id="cancel" type="button">cancel</button>
-        </div>
-      </div>
-      <div id="overlay">
-      </div>
     </main>
-
     <script src="js/jquery-3.4.1.min.js"></script>
-    <script src="js/smoothscroll.js"></script>
-    <script src="js/ping.min.js"></script>
-    <script src="js/main.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
   </body>
