@@ -24,6 +24,10 @@ body {
   body { zoom: 75%; }
 }
 
+div {
+  line-height: 24px;
+}
+
 .num {
   color: var(--line_num-color);
 }
