@@ -1,5 +1,18 @@
 :root {
-  --body-bg-color: #222222;
+  --body-bg-color: #272822;
+  --line_num-color: #8f8f89;
+  --comment-color: #807d69;
+  --red-color: #f92672;
+  --green-color: #a4df2e;
+  --whiteish-color: #f8f8f2;
+  --yellow-color: #e6db74;
+  --link-color: #de9331;
+  --link-hover-color: #e5aa5d;
+  --curly-color: #c8c8a0;
+  --purple-color: #a87df6;
+  --blue-color: #33ccff;
+  --last_line-color: #3e3d32;
+
   --nav-bg-color: #333333;
   --para-color: #a1a1a1;
   --butn-hov-color: #1c8674;
@@ -7,6 +20,8 @@
   --secondary-color: #70efde;
   --title-color: #e2e2e2;
 }
+
+.jb-mono { font-family: 'JetBrains Mono', monospace; }
 
 body {
   background-color: var(--body-bg-color);
@@ -20,93 +35,68 @@ body {
                                   supported by Chrome and Opera */
 }
 
-hr {
-  border: 1px solid var(--primary-color);
+/* div {
+  margin-left: -1em;
+  text-indent: -3em;
+  padding-left: 3em;
+} */
+
+.num {
+  color: var(--line_num-color);
 }
 
-img {
-  display: block;
-  margin: auto;
-  border-radius: 7px;
+.comment {
+  color: var(--comment-color);
 }
 
-h1 {
-  color: var(--title-color);
+.red {
+  color: var(--red-color);
 }
 
-h2, h3 {
-  color: var(--secondary-color);
+.green {
+  color: var(--green-color);
 }
 
-h5 {
-  line-height: 26px;
+.white {
+  color: var(--whiteish-color);
 }
 
-a {
-  color: var(--primary-color);
-  text-decoration: none;
+.yellow {
+  color: var(--yellow-color);
 }
 
-a:hover {
-  color: var(--secondary-color);
-  text-decoration: none;
+.link {
+  color: var(--link-color);
+  text-decoration: underline;
 }
 
-.small-heading {
-  color: var(--title-color);
-  font-weight: bold;
+.link:hover {
+  color: var(--link-hover-color);
 }
 
-.highlight {
-  color: var(--title-color);
+.curly {
+  color: var(--curly-color);
 }
 
-.text-box {
-  padding: 20px;
+.purple {
+  color: var(--purple-color);
 }
 
-.butn {
-  background-color: var(--primary-color);
-  display: block;
-  margin: auto;
-  width: 200px;
+.blue {
+  color: var(--blue-color);
 }
 
-.butn:hover {
-  background-color: var(--secondary-color);
+.last_line {
+  background: var(--last_line-color);
 }
 
-#emailBtn {
-  background-color: var(--primary-color);
-  display: inline-block;
-  margin-left: 23px;
-  width: 70px;
-  height: 50px
+.blink {
+  animation: blinking 1s infinite;
 }
 
-#emailBtn:hover {
-  background-color: var(--secondary-color);
-}
-
-#iconGithub {
-  margin-left: 17px;
-}
-
-.icon {
-  background-color: var(--primary-color);
-  width: 50px;
-  height: 50px;
-  display: inline-block;
-}
-
-.icon:hover {
-  background-color: var(--secondary-color);
-}
-
-body:not(.user-is-tabbing) button:focus,
-body:not(.user-is-tabbing) input:focus,
-body:not(.user-is-tabbing) select:focus,
-body:not(.user-is-tabbing) textarea:focus,
-body:not(.user-is-tabbing) a:focus {
-  outline: none;
+@keyframes blinking{
+  0%{   color: var(--whiteish-color);   }
+  50%{   color: var(--whiteish-color); }
+  51%{   color: transparent; }
+  100%{   color:transparent; }
 }
