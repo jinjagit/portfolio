@@ -35,11 +35,9 @@ body {
                                   supported by Chrome and Opera */
 }
 
-/* div {
-  margin-left: -1em;
-  text-indent: -3em;
-  padding-left: 3em;
-} */
+@media (max-width:600px) {
+  body { zoom: 75%; }
+}
 
 .num {
   color: var(--line_num-color);
