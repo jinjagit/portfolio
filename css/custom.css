@@ -83,8 +83,8 @@ div {
 }
 
 @keyframes blinking{
-  0%{   color: var(--whiteish-color);   }
-  50%{   color: var(--whiteish-color); }
-  51%{   color: transparent; }
-  100%{   color:transparent; }
+  0% { color: var(--whiteish-color); }
+  50% { color: var(--whiteish-color); }
+  51% { color: transparent; }
+  100% { color:transparent; }
 }
